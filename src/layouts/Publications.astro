@@ -1,0 +1,37 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Card from "@components/Card";
+
+export interface Props {
+  cards: Array<{
+    href?: string;
+    frontmatter: {
+      title: string;
+      pubDatetime: string;
+      modDatetime?: string | null;
+      description: string;
+    };
+  }>;
+}
+
+const { cards } = Astro.props;
+---
+
+<Layout title="Publications">
+  <Header activeNav="publications" />
+  <Main pageTitle="Publications" pageDesc="A collection of my published works.">
+    {cards?.length ? (
+      <ul class="space-y-6">
+        {cards.map((card) => (
+          <Card {...card} />
+        ))}
+      </ul>
+    ) : (
+      <p>No publications available.</p>
+    )}
+  </Main>
+  <Footer />
+</Layout>

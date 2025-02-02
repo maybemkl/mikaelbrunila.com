@@ -7,8 +7,6 @@ title: "About"
   <img src="/assets/img/mikael_brunila.jpeg" style="width: 100%;"/>
 </div>
 
-## Hello! 👋
-
 I am a Postdoctoral researcher with the [Platial Analysis](https://platial.science/) and [Urban Politics and Governance](https://upgo.lab.mcgill.ca/) labs at McGill University. My primary interests are two-fold. 
 
 1️⃣ I work on the application of statistical methods in general and natural language processing in particular to complex social problems. 

@@ -4,20 +4,22 @@ import Publications from "@layouts/Publications.astro";
 // List of publications
 const publications = [
   {
-    title: "Amazing Research Paper",
-    url: "https://example.com/amazing-research",
-    image: "/assets/img/mikael_brunila.jpeg",
-    description: "A groundbreaking study on amazing things.",
-    pubDatetime: "2025-01-01T12:00:00Z", // Valid ISO 8601 date
-    modDatetime: null, // Optional
-  },
-  {
-    title: "[JAPA] High rises and housing stress: A spatial big data analysis of rental housing financialization",
+    title: "High rises and housing stress: A spatial big data analysis of rental housing financialization",
+    journal: "Journal of the American Planning Association (JAPA)",
     url: "https://www.tandfonline.com/doi/full/10.1080/01944363.2022.2126382",
     image: "/assets/img/japa_map.png",
     description: "A study on the financialization of housing in Montreal using a large scraped dataset and Bayesian spatial models.",
     pubDatetime: "2024-01-01T00:00:00Z",
     modDatetime: null,
+  },
+  {
+    title: "Toward a Critical Toponymy Framework for Named Entity Recognition: A Case Study of Airbnb in New York City",
+    journal: "Empirical Methods for Natural Language Processing (EMNLP)",
+    url: "https://aclanthology.org/2023.emnlp-main.284/",
+    image: "/assets/img/airbnb_toponymy_map.png",
+    description: "A study of toponymy hierarchies on Airbnb in NYC using LLMs. The paper won an 'outstanding paper' award at EMNLP 2023.",
+    pubDatetime: "2023-01-12T12:00:00Z", // Valid ISO 8601 date
+    modDatetime: null, // Optional
   },
 ];
 
@@ -26,6 +28,7 @@ const cards = publications.map((pub) => ({
   href: pub.url, // Use the external link for href
   frontmatter: {
     title: pub.title,
+    journal: pub.journal,
     pubDatetime: pub.pubDatetime,
     modDatetime: pub.modDatetime,
     description: pub.description,

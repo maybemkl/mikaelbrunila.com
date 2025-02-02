@@ -9,20 +9,20 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, modDatetime, description, image } = frontmatter;
+  const { title, pubDatetime, modDatetime, description, image, journal } = frontmatter; // Destructure journal
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
     className: "text-lg font-medium decoration-dashed hover:underline",
   };
-  console.log("Card frontmatter:", frontmatter);
+
   return (
     <li className="my-6 flex items-start space-x-4">
       {image && (
         <img
           src={image}
           alt={title}
-          className="w-48 h-48 object-cover rounded-lg shadow-sm" // Increased width and height
+          className="w-48 h-48 object-cover rounded-lg shadow-sm"
         />
       )}
       <div>
@@ -36,9 +36,15 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
             <h3 {...headerProps}>{title}</h3>
           )}
         </a>
-        <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} format={frontmatter.format || "full"} />
+        <p className="text-sm text-gray-500 italic">{journal}</p> {/* Display the journal */}
+        <Datetime
+          pubDatetime={pubDatetime}
+          modDatetime={modDatetime}
+          format={frontmatter.format || "full"}
+        />
         <p>{description}</p>
       </div>
     </li>
   );
 }
+

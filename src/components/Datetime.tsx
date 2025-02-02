@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 interface DatetimesProps {
   pubDatetime: string | Date;
   modDatetime: string | Date | undefined | null;
+  format?: "full" | "year-month"; // Added format prop
 }
 
 interface EditPostProps {
@@ -23,6 +24,7 @@ export default function Datetime({
   className = "",
   editPost,
   postId,
+  format = "full", // Added default format prop
 }: Props) {
   return (
     <div
@@ -49,6 +51,7 @@ export default function Datetime({
         <FormattedDatetime
           pubDatetime={pubDatetime}
           modDatetime={modDatetime}
+          format={format} // Pass format prop to FormattedDatetime
         />
         {size === "lg" && <EditPost editPost={editPost} postId={postId} />}
       </span>
@@ -56,28 +59,36 @@ export default function Datetime({
   );
 }
 
-const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
+const FormattedDatetime = ({ pubDatetime, modDatetime, format = "full" }: DatetimesProps) => {
+  // MOD: Added format support to adjust date display
   const myDatetime = new Date(
     modDatetime && modDatetime > pubDatetime ? modDatetime : pubDatetime
   );
 
-  const date = myDatetime.toLocaleDateString(LOCALE.langTag, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  // MOD: Adjusted date formatting based on format prop
+  const dateOptions =
+    format === "year-month"
+      ? { year: "numeric", month: "long" } // Show year and month
+      : { year: "numeric", month: "short", day: "numeric" }; // Default full format
 
-  const time = myDatetime.toLocaleTimeString(LOCALE.langTag, {
+  const timeOptions = {
     hour: "2-digit",
     minute: "2-digit",
-  });
+  };
+
+  const date = myDatetime.toLocaleDateString(LOCALE.langTag, dateOptions);
+  const time = myDatetime.toLocaleTimeString(LOCALE.langTag, timeOptions);
 
   return (
     <>
       <time dateTime={myDatetime.toISOString()}>{date}</time>
-      <span aria-hidden="true"> | </span>
-      <span className="sr-only">&nbsp;at&nbsp;</span>
-      <span className="text-nowrap">{time}</span>
+      {format === "full" && ( // Only show time for full format
+        <>
+          <span aria-hidden="true"> | </span>
+          <span className="sr-only">&nbsp;at&nbsp;</span>
+          <span className="text-nowrap">{time}</span>
+        </>
+      )}
     </>
   );
 };

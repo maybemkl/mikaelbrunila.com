@@ -18,6 +18,9 @@ export interface Props {
 }
 
 const { cards } = Astro.props;
+
+// Add console.log here to debug the cards data
+console.log("Cards data:", cards);
 ---
 
 <Layout title="Publications">
@@ -26,7 +29,14 @@ const { cards } = Astro.props;
     {cards?.length ? (
       <ul class="space-y-6">
         {cards.map((card) => (
-          <Card {...card} />
+          <Card
+            {...card}
+            frontmatter={{
+              ...card.frontmatter,
+              format: "year-month", // Pass format to specify year and month only
+              image: card.frontmatter.image, // Ensure image is passed
+            }}
+          />
         ))}
       </ul>
     ) : (

@@ -12,12 +12,12 @@ const publications = [
     modDatetime: null, // Optional
   },
   {
-    title: "Innovative Study on Tech",
-    url: "https://example.com/innovative-tech",
-    image: "/assets/img/mikael_brunila.jpeg",
-    description: "An in-depth look at the latest technological advances.",
-    pubDatetime: "2024-12-15T08:00:00Z",
-    modDatetime: "2024-12-20T09:30:00Z",
+    title: "[JAPA] High rises and housing stress: A spatial big data analysis of rental housing financialization",
+    url: "https://www.tandfonline.com/doi/full/10.1080/01944363.2022.2126382",
+    image: "/assets/img/japa_map.png",
+    description: "A study on the financialization of housing in Montreal using a large scraped dataset and Bayesian spatial models.",
+    pubDatetime: "2024-01-01T00:00:00Z",
+    modDatetime: null,
   },
 ];
 
@@ -29,6 +29,7 @@ const cards = publications.map((pub) => ({
     pubDatetime: pub.pubDatetime,
     modDatetime: pub.modDatetime,
     description: pub.description,
+    image: pub.image, // Pass the image field here
   },
 }));
 ---

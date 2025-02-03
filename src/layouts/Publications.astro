@@ -20,12 +20,12 @@ export interface Props {
 const { cards } = Astro.props;
 
 // Add console.log here to debug the cards data
-console.log("Cards data:", cards);
+// console.log("Cards data:", cards);
 ---
 
 <Layout title="Publications">
   <Header activeNav="publications" />
-  <Main pageTitle="Publications" pageDesc="A collection of my published works.">
+  <Main pageTitle="Publications" pageDesc="A collection of my academic work and long-form essays.">
     {cards?.length ? (
       <ul class="space-y-6">
         {cards.map((card) => (

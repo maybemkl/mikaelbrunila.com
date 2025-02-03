@@ -3,22 +3,31 @@ import Publications from "@layouts/Publications.astro";
 
 // List of publications
 const publications = [
+    {
+    title: "Taking AI into the tunnels",
+    journal: "e-flux Journal",
+    url: "https://www.e-flux.com/journal/",
+    image: "/assets/img/e-flux-embeddings.png",
+    description: "An essay on how to break with centralization in AI.",
+    pubDatetime: "2025-02-04T00:00:00-00:00",
+    modDatetime: null,
+  },
   {
     title: "High rises and housing stress: A spatial big data analysis of rental housing financialization",
     journal: "Journal of the American Planning Association (JAPA)",
     url: "https://www.tandfonline.com/doi/full/10.1080/01944363.2022.2126382",
-    image: "/assets/img/japa_map.png",
+    image: "/assets/img/japa_weights.png",
     description: "A study on the financialization of housing in Montreal using a large scraped dataset and Bayesian spatial models.",
-    pubDatetime: "2024-01-01T00:00:00Z",
+    pubDatetime: "2024-01-15T00:00:00-00:00",
     modDatetime: null,
   },
   {
     title: "Toward a Critical Toponymy Framework for Named Entity Recognition: A Case Study of Airbnb in New York City",
     journal: "Empirical Methods for Natural Language Processing (EMNLP)",
     url: "https://aclanthology.org/2023.emnlp-main.284/",
-    image: "/assets/img/airbnb_toponymy_map.png",
-    description: "A study of toponymy hierarchies on Airbnb in NYC using LLMs. The paper won an 'outstanding paper' award at EMNLP 2023.",
-    pubDatetime: "2023-01-12T12:00:00Z", // Valid ISO 8601 date
+    image: "/assets/img/airbnb_toponymy_map_no_legend.png",
+    description: "Award-winning LLM paper on toponymy hierarchies on Airbnb in NYC.",
+    pubDatetime: "2023-12-08T00:00:00-00:00", // Valid ISO 8601 date
     modDatetime: null, // Optional
   },
 ];

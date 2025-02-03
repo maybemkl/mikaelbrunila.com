@@ -1,6 +1,6 @@
 ---
 author: Mikael Brunila
-pubDatetime: 2024-02-03T15:22:00Z
+pubDatetime: 2024-02-01T10:15:00-05:00
 modDatetime: null
 title: Understanding Moran's I
 slug: understanding-morans-i
@@ -13,6 +13,4 @@ description:
   An introduction to diagnosing local and global spatial autocorrelation with Moran's I.
 ---
 
-Here are some rules/recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
-
-## Table of contents
+Sorry folks, I am still just a placeholder page :-) 

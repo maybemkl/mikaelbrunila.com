@@ -370,7 +370,6 @@ plot_scatter <- function(data, title) {
   slope <- coef(fit)[2]
   
   # Create the annotation label using only the x coefficient.
-  # Here, we use the Greek letter beta (β) to denote the coefficient.
   label_text <- sprintf("Moran's I = slope = %.2f", slope)
   
   # Choose a point along the regression line.
@@ -379,6 +378,7 @@ plot_scatter <- function(data, title) {
   mid_y <- intercept + slope * mid_x
   
   # Compute the angle (in degrees) of the regression line.
+  # Using 140 because 180 is giving a weird tilt on the annotation.
   angle_deg <- atan(slope) * 140 / pi
   
   ggplot(data, aes(x = var_std, y = lag_var)) +

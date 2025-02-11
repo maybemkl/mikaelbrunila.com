@@ -6,6 +6,7 @@ title: Understanding Moran's I
 slug: understanding-morans-i
 featured: true
 draft: false
+ogImage: figures/plot_morans_scatter-1.png
 tags:
   - GIS
   - tutorial

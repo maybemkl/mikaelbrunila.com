@@ -18,7 +18,8 @@
     --color-accent: 255, 107, 1;
     --color-card: 52, 63, 96;
     --color-card-muted: 138, 51, 2;
-    --color-border: 171, 75, 8;
+    --color-border: 237, 228, 209;
+    /*--color-border: 171, 75, 8;*/
   }
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
@@ -91,6 +92,10 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-skin-card-muted;
+  }
+
+  details.code-fold {
+    width: 100%;
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */

@@ -5,11 +5,16 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
+// Custom
+import mdx from '@astrojs/mdx'
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
   integrations: [
+    mdx(),
     tailwind({
       applyBaseStyles: false,
     }),
@@ -19,7 +24,10 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    //syntaxHighlight: "prism",
+    rehypePlugins: [rehypeKatex],
     remarkPlugins: [
+      remarkMath,
       remarkToc,
       [
         remarkCollapse,
@@ -30,8 +38,8 @@ export default defineConfig({
     ],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
-      wrap: true,
+      themes: { light: "github-light", dark: "github-dark" },
+      wrap: false,
     },
   },
   vite: {

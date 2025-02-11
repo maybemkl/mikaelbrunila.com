@@ -60,18 +60,38 @@ module.exports = {
         }
       },
       fontFamily: {
-        mono: ["IBM Plex Mono", "monospace"],
+        //mono: ["Classic Serif", "monospace"],
+        body: ['Inter', 'sans-serif'],
+        code: ['Menlo', 'monospace'],
+        heading: ['Montserrat', 'sans-serif'],
       },
-
       typography: {
         DEFAULT: {
           css: {
-            pre: {
-              color: false,
-            },
+            color: '#333',
+            // Apply the body font for general text
+            fontFamily: 'Inter, sans-serif',
+            // Specifically style <code> elements
             code: {
+              fontFamily: 'Menlo, monospace',
               color: false,
             },
+            pre: {
+              fontFamily: 'Menlo, monospace',
+              color: false,
+              width: '100%',
+              maxWidth: '100%',
+              minWidth: '100%',
+              margin: 0,
+              padding: '1rem',
+              overflowX: 'auto',
+              boxSizing: 'border-box',
+            },
+            'pre code': {
+              display: 'block',
+              width: '100%',
+              minWidth: '100%',
+              whiteSpace: 'pre',},
           },
         },
       },

@@ -712,8 +712,12 @@ In other words, each Local Moran’s $I_i$ value, is the product of the *standar
 
 $$
 Z_{I_i} = \frac{I_i - E(I_i)}{\sigma_{I_i}} = \frac{I_i - \bar{I_i}}{\sigma_{I_i}}
-$$ Using these Z-values of the Moran’s $I_i$, we have the distribution from which we can get our p-value thresholds for testing the null hypothesis that the Local Moran’s $I_i$ values come from a random distribution, rather than the one we are seeing here.
+$$ 
+
+Using these Z-values of the Moran’s $I_i$, we have the distribution from which we can get our p-value thresholds for testing the null hypothesis that the Local Moran’s $I_i$ values come from a random distribution, rather than the one we are seeing here.
+
 </details>
+
 
 This is how the z-scored Local Moran’s $I_i$ values are distributed:
 

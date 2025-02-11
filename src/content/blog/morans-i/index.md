@@ -1,6 +1,6 @@
 ---
 author: Mikael Brunila
-pubDatetime: 2024-02-10T20:29:00-05:00
+pubDatetime: 2025-02-10T8:29:00-05:00
 modDatetime: null
 title: Understanding Moran's I
 slug: understanding-morans-i

@@ -564,7 +564,9 @@ Notice above that Moran’s $I$ was also the slope that traces the relationship 
 
 $$
 \operatorname{lag}(z_i) = \sum_{j} w_{ij}z_j
-$$ $$
+$$ 
+
+$$
 I = \frac{\sum_{i} z_i \operatorname{lag}(z_i)}{N}
 $$
 
@@ -891,16 +893,5 @@ data_2021 |>
 ### Bringing it all together
 
 What have we learned about the distribution of relative shelter costs? Using the Global Moran’s $I$, we learned that they are significantly clustered. We also got a first sense of how these values are distributed, using a quadrant map. However, these observations were not yet statistically significant local statistics. Using the Local Moran’s $I_i$, we learned that positive autocorrelation characterizes downtown Montreal, some of the independent municipalities around Beaconsfield as well as the area around Hampstead and Côte Saint-Luc. These are all wealthy areas, where we would expect rents to be high. The below map shows these patterns. It could, for instance, function as the starting point for further investigation.
-
-``` r
-Reading layer `quartierreferencehabitation' from data source 
-  `/Users/mikaelbrunila/Documents/Code/UpGO/URBP505/data/quartierreferencehabitation.geojson' 
-  using driver `GeoJSON'
-Simple feature collection with 91 features and 5 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -73.97639 ymin: 45.40215 xmax: -73.4762 ymax: 45.7038
-Geodetic CRS:  WGS 84
-```
 
 ![](figures/final_map-1.png)

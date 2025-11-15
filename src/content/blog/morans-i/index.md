@@ -76,17 +76,15 @@ description:
 /* Keep <details> collapsed in PDF/print */
 <style>
 @media print {
-  /* hide contents of folded Quarto/Astro code blocks */
-  .code-fold .code-content,
-  .code-fold .content {
+  /* For "Code" blocks: show only the summary line in print */
+  details.code-fold > *:not(summary) {
     display: none !important;
     visibility: hidden !important;
   }
 
-  /* keep only the clickable header (the "Code" line) */
-  .code-fold .code-header,
-  .code-fold summary {
-    display: block !important;
+  /* Optional: make the summary look like normal text in print */
+  details.code-fold > summary {
+    list-style: none;  /* removes the triangle if you want */
   }
 }
 </style>

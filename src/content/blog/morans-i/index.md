@@ -74,13 +74,19 @@ description:
 </style>
 <style>
 /* Keep <details> collapsed in PDF/print */
+<style>
 @media print {
-  details[open] summary ~ * {
+  /* hide contents of folded Quarto/Astro code blocks */
+  .code-fold .code-content,
+  .code-fold .content {
     display: none !important;
+    visibility: hidden !important;
   }
-  /* Optional: avoid auto-expanding entirely */
-  details {
-    display: block;
+
+  /* keep only the clickable header (the "Code" line) */
+  .code-fold .code-header,
+  .code-fold summary {
+    display: block !important;
   }
 }
 </style>

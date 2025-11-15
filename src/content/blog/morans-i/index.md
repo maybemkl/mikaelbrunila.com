@@ -73,18 +73,20 @@ description:
 .color-purple { color: var(--purple); }
 </style>
 <style>
-/* Keep <details> collapsed in PDF/print */
-<style>
 @media print {
-  /* For "Code" blocks: show only the summary line in print */
-  details.code-fold > *:not(summary) {
+
+  /* Force ALL code-fold details to stay collapsed in print */
+  details.code-fold summary + * {
     display: none !important;
-    visibility: hidden !important;
   }
 
-  /* Optional: make the summary look like normal text in print */
-  details.code-fold > summary {
-    list-style: none;  /* removes the triangle if you want */
+  details.code-fold[open] summary + * {
+    display: none !important;
+  }
+
+  /* Remove triangle marker in print (optional, but recommended) */
+  details.code-fold summary {
+    list-style: none !important;
   }
 }
 </style>

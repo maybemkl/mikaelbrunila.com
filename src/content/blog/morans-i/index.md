@@ -72,6 +72,18 @@ description:
 .color-lightblue { color: var(--lightblue); }
 .color-purple { color: var(--purple); }
 </style>
+<style>
+/* Keep <details> collapsed in PDF/print */
+@media print {
+  details[open] summary ~ * {
+    display: none !important;
+  }
+  /* Optional: avoid auto-expanding entirely */
+  details {
+    display: block;
+  }
+}
+</style>
 
 This winter I am co-teaching a [GIS course](https://www.mcgill.ca/study/2024-2025/courses/urbp-505) at the McGill School of Urban Planning. After confusing my students with a lecture on Moran’s $I$, I thought I’d best come back to the concept and try to clarify it a bit.
 

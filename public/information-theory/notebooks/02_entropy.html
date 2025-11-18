@@ -211,7 +211,7 @@ window.Quarto = {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -263,7 +263,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01_bits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bits: The Difference that Makes a Difference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bit: The Difference which Makes a Difference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -282,14 +282,24 @@ window.Quarto = {
   </li>
     </ul>
     </div>
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-transmitter-again-efficient-encoding" id="toc-the-transmitter-again-efficient-encoding" class="nav-link active" data-scroll-target="#the-transmitter-again-efficient-encoding"><span class="header-section-number">3.1</span> The Transmitter (Again): Efficient Encoding</a>
+  <ul>
+  <li><a href="#the-definition-of-information-entropy" id="toc-the-definition-of-information-entropy" class="nav-link" data-scroll-target="#the-definition-of-information-entropy"><span class="header-section-number">3.1.1</span> The Definition of Information Entropy</a></li>
+  </ul></li>
+  <li><a href="#bits-for-a-very-simple-language" id="toc-bits-for-a-very-simple-language" class="nav-link" data-scroll-target="#bits-for-a-very-simple-language"><span class="header-section-number">3.2</span> Bits for (a very simple) Language</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01_bits.html">Part I — Information Theory</a></li><li class="breadcrumb-item"><a href="../notebooks/02_entropy.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Entropy: Expected Differences</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -310,40 +320,160 @@ window.Quarto = {
 </header>
 
 
-<p><strong>The Big Question:</strong> How do we most effectively code messages as signals?</p>
-<p>We are now ready to understand the mathematical concept of <strong>information entropy</strong>.</p>
-<p>To do so, let’s return to the unbiased coin, once again. We already know we need two bits to encode it. BUt what if we wanted to calculate this value just from knowing the probabilities:</p>
+<section id="the-transmitter-again-efficient-encoding" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-transmitter-again-efficient-encoding"><span class="header-section-number">3.1</span> The Transmitter (Again): Efficient Encoding</h2>
+<p>Recall where we left off in the previous part: We were converting outputs from a stochastic process, such as the outcomes from the toss of a fair coin, to bits. This is what the <strong>transmitter</strong> does in the Noisy Channel of Shannon, as seen in the figure below.</p>
+<div id="3e3d674d" class="cell" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="51">
+<!-- Interactive version: self-contained HTML + JS tooltip hover (works in Quarto + Jupyter when trusted) -->
+<div id="shannon-diagram-transmitter" style="background:#fff; color:#000; font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; text-align:center; padding:20px;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 900 400" style="max-width:100%;height:auto">
+    <defs>
+      <marker id="arrow" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="6" markerheight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"></path>
+      </marker>
+    </defs>
+
+    <!-- Arrows -->
+    <path class="arrow" d="M160 190 H245" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+    <path class="arrow" d="M365 190 H450" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+    <path class="arrow" d="M490 190 H575" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+    <path class="arrow" d="M695 190 H780" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+    <path class="arrow" d="M470 285 V205" stroke="#000" stroke-width="2" fill="none" marker-end="url(#arrow)"></path>
+
+    <!-- Nodes -->
+    <g class="node" data-title="Information Source" data-desc="Produces a message consisting of symbols, words, data, etc.<br>(e.g. &quot;SOS&quot;)">
+      <rect x="40" y="160" width="120" height="80" fill="#fff" stroke="#000" stroke-width="2" rx="6"></rect>
+      <text x="100" y="140" text-anchor="middle" font-weight="bold">INFORMATION</text>
+      <text x="100" y="155" text-anchor="middle" font-weight="bold">SOURCE</text>
+      <text x="202.5" y="260" text-anchor="middle">MESSAGE</text>
+    </g>
+
+    <g class="node highlighted-node" data-title="Transmitter" data-desc="Encodes the message into a signal for the channel<br>(e.g. &quot;SOS&quot; becomes &quot;... --- ...&quot;)">
+      <rect x="245" y="160" width="120" height="80" fill="#fff" stroke="#000" stroke-width="2" rx="6"></rect>
+      <text x="305" y="155" text-anchor="middle" font-weight="bold">TRANSMITTER</text>
+      <text x="407.5" y="210" text-anchor="middle">SIGNAL</text>
+    </g>
+
+    <g class="node" data-title="Channel" data-desc="Carries the signal through a medium<br>(e.g., wire, air, fiber).">
+      <rect x="450" y="175" width="40" height="30" fill="#fff" stroke="#000" stroke-width="2" rx="4"></rect>
+      <text x="532.5" y="210" text-anchor="middle">RECEIVED</text>
+      <text x="532.5" y="225" text-anchor="middle">SIGNAL</text>
+    </g>
+
+    <g class="node" data-title="Receiver" data-desc="Decodes the signal to reconstruct the message.<br>(e.g. &quot;... --- ...&quot; becomes &quot;SOS&quot;)">
+      <rect x="575" y="160" width="120" height="80" fill="#fff" stroke="#000" stroke-width="2" rx="6"></rect>
+      <text x="635" y="155" text-anchor="middle" font-weight="bold">RECEIVER</text>
+      <text x="737.5" y="260" text-anchor="middle">MESSAGE</text>
+    </g>
+
+    <g class="node" data-title="Destination" data-desc="The intended receiver or user of the message, whether human or machine.">
+      <rect x="780" y="160" width="120" height="80" fill="#fff" stroke="#000" stroke-width="2" rx="6"></rect>
+      <text x="840" y="155" text-anchor="middle" font-weight="bold">DESTINATION</text>
+    </g>
+
+    <g class="node" data-title="Noise Source" data-desc="Random disturbances that alter the signal.<br>(e.g. &quot;... --- ...&quot; becomes &quot;... --- ..-&quot;)">
+      <rect x="430" y="285" width="80" height="60" fill="#fff" stroke="#000" stroke-width="2" rx="6"></rect>
+      <text x="470" y="365" text-anchor="middle" font-weight="bold">NOISE SOURCE</text>
+    </g>
+  </svg>
+
+  <div class="tooltip" style="position:fixed; pointer-events:none; padding:8px 10px; font-size:12px; background:#fff; border:1px solid #999; border-radius:6px; opacity:0; transition:opacity 0.15s ease; box-shadow:0 2px 6px rgba(0,0,0,0.2);"></div>
+</div>
+
+<script type="text/javascript">
+  requestAnimationFrame(function(){
+    const container=document.getElementById('shannon-diagram-transmitter');
+    const nodes=container.querySelectorAll('.node');
+    const tooltip=container.querySelector('.tooltip');
+
+  nodes.forEach(node=>{
+    node.addEventListener('mouseenter',e=>{
+      tooltip.innerHTML='<strong>'+node.dataset.title+'</strong><br>'+node.dataset.desc;
+      tooltip.style.opacity='1';
+    });
+    node.addEventListener('mousemove',e=>{
+      tooltip.style.left=e.clientX+10+'px';
+      tooltip.style.top=e.clientY-20+'px';
+    });
+    node.addEventListener('mouseleave',()=>{
+      tooltip.style.opacity='0';
+    });
+  });
+})();
+</script>
+
+<!-- Instructions for Quarto or Jupyter -->
+<!--
+Use this block in a Quarto .qmd or Jupyter cell:
+
+Quarto:
+```{=html}
+<div id="shannon-diagram"> ... </div>
+```
+
+Jupyter Notebook:
+%%html
+<div id="shannon-diagram"> ... </div>
+
+Make sure notebook is trusted (File → Trust Notebook) or in Quarto, ensure `execute: true`.
+-->
+</div>
+</div>
+<p>While we have seen how to represent words with bits, the question that really occupied Shannon was how to do this in the most efficient manner. The bit was simply a byproduct of this preoccupation, a the minimal representation of events that could provide the best stepping stone towards efficiency. This quest for efficient transmission was partly a legacy of the work Shannon took up from his predecessors at Bell Labs, and partly an outcome from the renewed and acute interest in cryptography that arose during World War II.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>The action of the transmitter in changing the message into the signal often involves a coding process. What are the characteristics of an efficient coding process?</p>
+</blockquote>
+<p>Weaver, W. (1953). Recent contributions to the mathematical theory of communication. <em>ETC: A Review of General Semantics</em>, 10(4), 261–281.</p>
+</div></div><p>It is this drive for efficiency that underlies the mathematical concept of <strong>information entropy</strong>.</p>
+<p>To make sense of information entropy, let’s return to the unbiased coin that we used in the previous part. We already know we need on average one bit to encode the outcome, 0 or 1, “yes” or “no”, “heads” or “tails”. But what if we wanted to calculate this value just from knowing the probabilities <span class="math inline">\(P(H)\)</span> for heads and <span class="math inline">\(P(T)\)</span> for tails?</p>
 <p><span class="math display">\[
 P(H) = \frac{1}{2} \;\;\;
 P(T) = \frac{1}{2}
 \]</span></p>
-<p>If we take the log of these, we get:</p>
+<p>Remember, that we can take the <span class="math inline">\(\log_2\)</span> of a probability to know how many bits we need to represent it. If we take the log of these, we get:</p>
 <p><span class="math display">\[
 \log_2\frac{1}{2} + \log_2\frac{1}{2} = \\
 -1 + (-1) = \\
 -2
 \]</span></p>
-<p>But that’s too much! And negative! We know the bits to encode a fair coin is one. What we need to do is to weigh each event in our distribution by it’s probability to get not just a sum but a <strong>“weighted sum”</strong>. <span class="math display">\[
+<p>But that magnitude is too large! And the number is negative! We know the bits to encode a fair coin is one. What we need to do is to weigh each event in our distribution by it’s probability to get not just a sum but a <strong>“weighted sum”</strong>. <span class="math display">\[
 \begin{equation*}
-\left(\frac{1}{2}\times\log_2\frac{1}{2}\right) + \left(\frac{1}{2}\times\log_2\frac{1}{2}\right) = \\
-\left(\frac{1}{2}\times(-1)\right) + \left(\frac{1}{2}\times(-1)\right) = \\
--\frac{1}{2} -\frac{1}{2} = \\
--1
+\begin{aligned}
+\left(\frac{1}{2}\times\log_2\frac{1}{2}\right) + \left(\frac{1}{2}\times\log_2\frac{1}{2}\right) &amp;= \\
+\left(\frac{1}{2}\times(-1)\right) + \left(\frac{1}{2}\times(-1)\right) &amp;= \\
+-\frac{1}{2} -\frac{1}{2} &amp;= -1
+\end{aligned}
 \end{equation*}
 \]</span></p>
 <p>Better! But still negative. What we do is just reverse the sign of the equation, like this:</p>
-<p><span class="math display">\[
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>In retrospect, identifying entropy with information […] allowed entropy to be reconceptualized as the thermodynamic motor driving systems to self-organization rather than as the heat engine driving the world to universal heat death. (p.&nbsp;102)</p>
+</blockquote>
+<p>Hayles, N. K. (1998). <em>How We Became Posthuman: Virtual Bodies in Cybernetics, Literature, and Informatics</em>. University of Chicago Press.</p>
+</div></div><p><span class="math display">\[
 \begin{equation*}
--1 \times \left[\left(\frac{1}{2}\times\log_2\frac{1}{2}\right) + \left(\frac{1}{2}\times\log_2\frac{1}{2}\right)\right] = \\
--1 \times \left[\left(\frac{1}{2}\times(-1)\right) + \left(\frac{1}{2}\times(-1)\right)\right] = \\
+\begin{aligned}
+-1 \times \left[\left(\frac{1}{2}\times\log_2\frac{1}{2}\right) + \left(\frac{1}{2}\times\log_2\frac{1}{2}\right)\right] &amp;= \\
+-1 \times \left[\left(\frac{1}{2}\times(-1)\right) + \left(\frac{1}{2}\times(-1)\right)\right] &amp;= \\
 -1 \times \left[-\frac{1}{2} -\frac{1}{2}\right] = \\
--1 \times (-1) = \\
-1
+-1 \times (-1) &amp;= 1
+\end{aligned}
 \end{equation*}
 \]</span></p>
-<p>We can actually use this to take a stab at a first definition of <strong>information entropy</strong>. We will use the symbol <span class="math inline">\(\mathbb{H}\)</span>. So let’s imagine a distribution <span class="math inline">\(X\)</span> with two outcomes <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> and let’s for simplicity’s sake say they have probabilities <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>. Then, the information entropy is:</p>
-<p><span class="math display">\[
-\mathbb{H}(X) = -(p_1 \log_2 p_1 + p_2 \log_2 p_2))
+<p>We can actually use this to take a stab at a first definition of <strong>information entropy</strong>. Following a convention established by Shannon, we will use the symbol <span class="math inline">\(\mathbb{H}\)</span>. In fact, this reversal of signs is the biggest difference in how Claude Shannon and Norbert Wiener defined information. Whereas Wiener opposed entropy and information, Shannon equated them. In one narrative, information is a measure of order, in the other one, a measure of disorder.</p>
+<section id="the-definition-of-information-entropy" class="level3 page-columns page-full" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="the-definition-of-information-entropy"><span class="header-section-number">3.1.1</span> The Definition of Information Entropy</h3>
+<p>So let’s imagine a <em>random variable</em> <span class="math inline">\(X\)</span> with two outcomes <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> and let’s for simplicity’s sake say they have probabilities <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>. Then, the information entropy is:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A <strong>random variable</strong> assigns a number to each outcome of a random process <span class="math inline">\(X\)</span>. For example, a coin flip can map “heads” to 1 and “tails” to 0, or a die roll can map each face to its number. In the former case, the possible outcomes are <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>, in the latter <span class="math inline">\(x_1\)</span> through <span class="math inline">\(x_6\)</span>. The probability distribution <span class="math inline">\(P(X)\)</span> of a random variable describes the set of probabilities <span class="math inline">\(P(x_i)\)</span> or <span class="math inline">\(p_i\)</span> of each possible value. So, in the case of a toss of a fair coin, <span class="math inline">\(p_1=0.5\)</span> and <span class="math inline">\(p_2=0.5\)</span>.</p>
+</div></div><p><span class="math display">\[
+\mathbb{H}(X) = -(p_1 \log_2 p_1 + p_2 \log_2 p_2)
 \]</span></p>
 <p>And we can actually generalize this to a case with any number of outcomes and with any probability values, like this:</p>
 <p><span class="math display">\[
@@ -353,295 +483,238 @@ P(T) = \frac{1}{2}
 \]</span></p>
 <p>Let’s unpack again.</p>
 <ol type="1">
-<li><p>First, the intimidating symbol <span class="math inline">\(\sum_{i=1}^N\)</span> just states that we sum over all the probabilities in our distribution, with <span class="math inline">\(N\)</span> outcomes <span class="math inline">\(x_i\)</span>, each of them indexed with <span class="math inline">\(i\)</span>. It’s like going over all the values in a list of length <span class="math inline">\(N\)</span> in a for-loop and adding them, just like the symbol <span class="math inline">\(\prod\)</span> did for multiplication. Because we are summing probabilities, what we get is a weighted sum, just like we wanted.</p></li>
+<li><p>First, the intimidating symbol <span class="math inline">\(\sum_{i=1}^N\)</span> just states that we sum over all the probabilities in our distribution, with <span class="math inline">\(N\)</span> outcomes <span class="math inline">\(x_i\)</span>, each of them indexed with <span class="math inline">\(i\)</span>. It’s like going over all the values in a list of length <span class="math inline">\(N\)</span> in a for-loop and adding them (for multiplication, we would instead use the symbol <span class="math inline">\(\prod\)</span>). Because we are summing probabilities, what we get is a weighted sum, just like we wanted.</p></li>
 <li><p>Second, we calculate the bits required to encode each outcome. This we already went over above.</p></li>
 <li><p>Third, we take the negative value of the whole thing, because the logarithms of fractions are negative (and probabilities are always fractions, except at 0 and 1) and we want the actual bits, not a negative value.</p></li>
-<li><p>The <span class="math inline">\((X)\)</span> after <span class="math inline">\(\mathbb{H}\)</span> just says that we are going over an entire distribution. It’s notation for “random variable”, which for our purposes is synonymous with distribution. It’s not necessary, but you will see that notation quite often when doing machine learning, so it’s good to know it.</p></li>
+<li><p>The <span class="math inline">\((X)\)</span> after <span class="math inline">\(\mathbb{H}\)</span> just says that we are going over an entire distribution, i.e.&nbsp;all possible outcomes of our “random variable”.</p></li>
 </ol>
 <p><strong>PROMPT:</strong> How would you code entropy if you were to use a for loop? <strong>Hint:</strong> You will need to use <code>np.log2</code></p>
-<p>Great! Let’s wrap that in a function. <span class="math inline">\(\log_2 0\)</span> is undefined, so we need to handle that separately.</p>
-<div id="db7748be-866e-4ad1-813f-e0fe97bdaf61" class="cell" data-execution_count="2">
+<p>Now, let’s wrap that calculation in a function. <span class="math inline">\(\log_2 0\)</span> is undefined, so we need to handle that separately.</p>
+<div id="8498a643-0bbe-4fc0-8cb6-6b33024ae4bf" class="cell" data-execution_count="54">
 <details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_as_loop(prob_dist):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    entropy <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> prob_dist:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> p.item() <span class="op">==</span> <span class="fl">0.0</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            entropy <span class="op">+=</span> p <span class="op">*</span> np.log2(p)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            entropy <span class="op">+=</span> <span class="dv">0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>entropy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="5aeadcb8-a2c3-40c9-8d63-f51a5de6f8a7" class="cell" data-execution_count="3">
+<p>Next, we will go over all these distributions and get the entropy for each of them. Just like in the previous part, we will need a list of distributions. This time we’ll create 100 pairs, instead of just 10.</p>
+<div id="65254595-2a53-40fc-b903-a23af6a4a5fd" class="cell" data-execution_count="55">
+<details open="" class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p_heads <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p_tails <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> p_heads</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="dc16146f-9e67-40c3-939b-e2c0451aa3a1" class="cell" data-execution_count="56">
+<details open="" class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prob_distributions <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(p_heads, p_tails))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[(pd[<span class="dv">0</span>].item(), pd[<span class="dv">1</span>].item()) <span class="cf">for</span> pd <span class="kw">in</span> prob_distributions][:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<pre><code>[(0.0, 1.0),
+ (0.010101010101010102, 0.98989898989899),
+ (0.020202020202020204, 0.9797979797979798)]</code></pre>
+</div>
+</div>
+<p><strong>PROMPT</strong> Get the entropy for each distribution in <code>prob_distributions</code>. Save the output as a <code>list</code>. <strong>Remember:</strong> Each tuple in this list is a probability distribution.</p>
+<div id="21e74a2b-fdf8-4f91-aaa6-3151f10b2225" class="cell" data-execution_count="57">
 <details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'../py'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plots <span class="im">import</span> (</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> plot_entropy</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"ticks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>coin_entropies <span class="op">=</span> [entropy_as_loop(p_dist) <span class="cf">for</span> p_dist <span class="kw">in</span> prob_distributions]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="8498a643-0bbe-4fc0-8cb6-6b33024ae4bf" class="cell" data-execution_count="4">
+<p>We can use a helper function to plot the entropy relative to the probability of heads in each distribution.</p>
+<div id="ce758a50-3971-4433-9dff-29850704e0a4" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="58">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_as_loop(prob_dist):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    entropy <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> prob_dist:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> p <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            entropy <span class="op">+=</span> p <span class="op">*</span> np.log2(p)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            entropy <span class="op">+=</span> <span class="dv">0</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>entropy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Let’s now go over all these distributions and get the entropy for each of them. We’ll need a list of distributions.</p>
-<div id="cc58e804-b414-408a-aca2-900d272d33cb" class="cell" data-execution_count="5">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="65254595-2a53-40fc-b903-a23af6a4a5fd" class="cell" data-execution_count="6">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_heads <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_tails <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> p_heads</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="dc16146f-9e67-40c3-939b-e2c0451aa3a1" class="cell" data-execution_count="7">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prob_distributions <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(p_heads, p_tails))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>prob_distributions[:<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>[(np.float64(0.0), np.float64(1.0)),
- (np.float64(0.010101010101010102), np.float64(0.98989898989899))]</code></pre>
-</div>
-</div>
-<strong>PROMPT</strong> Get the entropy for each distribution in <code>prob_distributions</code>. Save the output as a <code>list</code>.
-<div>
-<p><strong>Remember:</strong> Each tuple in this list is a probability distribution.</p>
-<div id="21e74a2b-fdf8-4f91-aaa6-3151f10b2225" class="cell" data-execution_count="8">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>coin_entropies <span class="op">=</span> [entropy_as_loop(p_dist) <span class="cf">for</span> p_dist <span class="kw">in</span> prob_distributions]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="d5f4aaf5-45fe-4a9b-a16d-9ac5a1951df8" class="cell" data-execution_count="9">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib_inline.backend_inline</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Always produce crisp SVGs for Quarto export</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>matplotlib_inline.backend_inline.set_matplotlib_formats(<span class="st">"svg"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.dpi"</span>: <span class="dv">96</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"savefig.dpi"</span>: <span class="dv">96</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.autolayout"</span>: <span class="va">True</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"svg.fonttype"</span>: <span class="st">"none"</span>,   <span class="co"># keep text as text, not paths</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="ce758a50-3971-4433-9dff-29850704e0a4" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="12">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_entropy(coin_entropies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_entropy(coin_entropies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_entropy_files/figure-html/cell-12-output-1.png" width="562" height="391" class="figure-img"></p>
+<p><img src="02_entropy_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We can also write our function in numpy, without the for-loop. It’s a good exercise to do this, because for these types of functions people will rarely use for-loops.</p>
-<p><strong>PROMPT:</strong> Re-write the entropy function in <code>numpy</code>. <br> <strong>Hints:</strong> - It’s one line of code for the entropy itself, but… - … if you want to handle the zeroes (you don’t have to), you can do this:</p>
-<div id="0ae0af0f-38cb-4bd2-b427-d331f951641b" class="cell" data-execution_count="13">
+<p><strong>PROMPT:</strong> Re-write the entropy function in <code>numpy</code>. <br> <strong>Hints:</strong></p>
+<ul>
+<li>It’s one line of code for the entropy itself, but…</li>
+<li>… if you want to handle the zeroes (you don’t have to), you can do this:</li>
+</ul>
+<div id="0ae0af0f-38cb-4bd2-b427-d331f951641b" class="cell" data-execution_count="59">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>])</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>p.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>array([1])</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<pre><code>1</code></pre>
 </div>
 </div>
-<div id="fac76ce1-f561-4b3d-9e88-4fdaaaef3e78" class="cell" data-execution_count="14">
-<details open="" class="code-fold">
+<div id="fac76ce1-f561-4b3d-9e88-4fdaaaef3e78" class="cell" data-execution_count="60">
+<details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_np(p):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(<span class="bu">list</span>(p))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_np(p):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(<span class="bu">list</span>(p))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Let’s plot it to make sure it’s the same as the for-loop version.</p>
-<div id="98ce811d-68b3-41d5-9e20-5a02a5b4ce42" class="cell" data-execution_count="15">
+<div id="98ce811d-68b3-41d5-9e20-5a02a5b4ce42" class="cell" data-execution_count="61">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>coin_entropies <span class="op">=</span> [entropy_np(prob_dist) <span class="cf">for</span> prob_dist <span class="kw">in</span> prob_distributions]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plot_entropy(coin_entropies, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coin_entropies <span class="op">=</span> [entropy_np(prob_dist) <span class="cf">for</span> prob_dist <span class="kw">in</span> prob_distributions]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plot_entropy(coin_entropies, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_entropy_files/figure-html/cell-15-output-1.png" width="562" height="391" class="figure-img"></p>
+<p><img src="02_entropy_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>And indeed it is! We’ve also added a red dot to highlight where the entropy as it’s highest. - It’s the point where <span class="math inline">\(P(H)=0.5\)</span>, i.e.&nbsp;where <span class="math inline">\(P(T)\)</span> is also equal to <span class="math inline">\(0.5\)</span>. - This is where the distribution is uniform. - This is why Weaver and Shannon called this least informative distribution the <strong>“maximum entropy” distribution</strong>.</p>
-<p>Why is entropy maximized where the distribution is uniform? - Because this is where there is no structure, no redundancy. - All events are equally likely. - This hightlights Shannon’s idea that information measures <strong>suprise</strong>. - When there is no structure, all events are equally surprising, so “average surprise” is maximized!</p>
+<p>And indeed it is! We’ve also added a red dot to highlight where the entropy as it’s highest.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>[W]hite noise has the maximum possible entropy. (p.&nbsp;632)</p>
+</blockquote>
+<p>Shannon, C. E. (1948). A Mathematical Theory of Communication. <em>The Bell System Technical Journal</em>, 27(3), 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">[URL]</a></p>
+</div></div><ul>
+<li>It’s the point where <span class="math inline">\(P(H)=0.5=P(T)\)</span>.</li>
+<li>This is where the distribution is uniform.</li>
+<li>This is why Weaver and Shannon called this least informative distribution the <strong>“maximum entropy”</strong> distribution.</li>
+</ul>
+<p>Why is entropy maximized where the distribution is uniform? Because this is where there is no structure, no <em>redundancy</em>. At this point, all events are equally likely: The coin is fair, the language is just random letters. This hightlights Shannon’s idea that information measures <strong>suprise</strong>. When there is no structure, all events are equally surprising, so “average surprise” is maximized!</p>
 <p>Entropy is <em>not</em> at it’s highest where probability is at it’s highest, because:</p>
 <ol type="1">
 <li>Probability measures the properties of <em>individual</em> events</li>
 <li>Information entropy measures the properties of <em>entire distributions</em></li>
 </ol>
-<section id="bits-for-a-very-simple-language" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="bits-for-a-very-simple-language"><span class="header-section-number">3.1</span> Bits for (a very simple) Language</h2>
-<p>Let’s now imagine an artificial language with only four letters, all equally probable. The letters are our unknown <span class="math inline">\(x_i\)</span> variable, and we index them with <span class="math inline">\(i\)</span> like this:</p>
+<p>If we continue the definition that Bateson gives for bits of information as “the difference which makes a difference”, information entropy is “average difference” or, in more statistical terms, “expected difference”. Instead of defining the individual differences that determine outcomes, information entropy measures the average amount of such differences in a given process.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We call averages “expected values” because they represent the long-run average outcome if we repeat the process many times. For example, the average of a die roll is 3.5—not a possible single roll, but the average over many rolls. “Expected” here means the value we expect on average, not a guaranteed outcome. It’s the center of the distribution, the number outcomes tend toward with repeated trials.</p>
+</div></div></section>
+</section>
+<section id="bits-for-a-very-simple-language" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="bits-for-a-very-simple-language"><span class="header-section-number">3.2</span> Bits for (a very simple) Language</h2>
+<p>So far, we have used the coin toss as a scaffolding to understand bits and entropy. Let’s now return to our main subject of interest, which is the relationship between information theory and language modelling. We define a simple, artificial language with only four letters, all equally probable. The letters are our unknown uniform random variable <span class="math inline">\(X\)</span> with outcomes <span class="math inline">\(x_i\)</span>:</p>
 <p><span class="math display">\[
 x_1 = A, \; x_2 = B, \; x_3 = C, \; x_4 = D
 \]</span></p>
-<p>They also have corresponding probabilities, so that</p>
+<p>They also have corresponding probabilities, so that:</p>
 <p><span class="math display">\[
 p(x_1) = 0.25, \; p(x_2) = 0.25, \; p(x_3) = 0.25, \; p(x_4) = 0.25
 \]</span></p>
-<div id="03dcea7e-2d8f-4ae8-8208-d500f984d21b" class="cell" data-execution_count="17">
+<p>In code, we can define the letters and their corresponding probabilities as:</p>
+<div id="03dcea7e-2d8f-4ae8-8208-d500f984d21b" class="cell" data-execution_count="62">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>uniform_probs <span class="op">=</span> [<span class="fl">0.25</span>]<span class="op">*</span><span class="dv">4</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>uniform_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>uniform_probs <span class="op">=</span> [<span class="fl">0.25</span>]<span class="op">*</span><span class="dv">4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>uniform_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>[0.25, 0.25, 0.25, 0.25]</code></pre>
 </div>
 </div>
-<p>Let’s plot the language as a distribution</p>
-<div id="93619916-be9c-4665-8e82-ad7e5c82a550" class="cell" data-execution_count="43">
+<p>Let’s plot the language as a distribution:</p>
+<div id="c022855d-1a90-4451-b4a0-103c443e2bcf" class="cell" data-execution_count="63">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_symbol_probs(uniform_probs, language):</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.8</span>, <span class="fl">3.8</span>))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># histogram-style bars (outline only, no fill)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    ax.bar(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">range</span>(<span class="bu">len</span>(uniform_probs)), </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        uniform_probs, </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        edgecolor<span class="op">=</span><span class="st">"black"</span>, </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"lightblue"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        fill<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(language)))</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels(language, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Probability"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Language"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">"both"</span>, which<span class="op">=</span><span class="st">"major"</span>, labelsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="c022855d-1a90-4451-b4a0-103c443e2bcf" class="cell" data-execution_count="34">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_symbol_probs(uniform_probs, language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_symbol_probs(uniform_probs, language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_entropy_files/figure-html/cell-18-output-1.png" width="546" height="354" class="figure-img"></p>
+<p><img src="02_entropy_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Our language has a uniform distribution, so the line is flat. We’ve seen this type of event before: - When we were tossing our fair coin two times, we had four possible outcomes, just like now. - The average bits we needed to encode those outcomes were <span class="math inline">\(2\)</span>.</p>
+<p>Our language has a uniform distribution, so each bar goes up to 0.25. We’ve seen this type of event before: When we were tossing our fair coin two times, we had four possible outcomes, just like now. In this instance, the average bits we needed to encode those outcomes were <span class="math inline">\(1\)</span>.</p>
 <p>Let’s see if that’s true now as well:</p>
-<div id="b978e136-31e6-47b0-ae6b-fb7cfd38d386" class="cell" data-execution_count="36">
+<div id="b978e136-31e6-47b0-ae6b-fb7cfd38d386" class="cell" data-execution_count="64">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>entropy_np(uniform_probs).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>entropy_np(uniform_probs).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<p>No surprises here. Or, from Shannon’s perspective, <strong>only surprises</strong>! - Each outcome requires two bits to encode. - To clarify, we can re-write our code for the bit table to include the probability of the events.</p>
-<div id="ecff6f1b-138b-45b3-9728-ddb7c9074101" class="cell" data-execution_count="37">
+<p>No surprises here. Or, from Shannon’s perspective, <strong>only surprises</strong>! Each outcome requires two bits to encode, and hence the average is also two. To clarify, we can re-write our code for the bit table to include the probability of the events.</p>
+<div id="ecff6f1b-138b-45b3-9728-ddb7c9074101" class="cell" data-execution_count="65">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_bit_table(outcome, bits, probs):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    n_bits <span class="op">=</span> [<span class="bu">len</span>(b) <span class="cf">for</span> b <span class="kw">in</span> bits]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'outcomes'</span>:outcome, </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">'bits'</span>:bits, </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'n_bits'</span>:n_bits,</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'prob'</span>:np.<span class="bu">round</span>(probs, <span class="dv">3</span>).astype(<span class="bu">str</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        }).style.hide()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_bit_table(outcome, bits, probs):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    n_bits <span class="op">=</span> [<span class="bu">len</span>(b) <span class="cf">for</span> b <span class="kw">in</span> bits]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'outcomes'</span>:outcome, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">'bits'</span>:bits, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'n_bits'</span>:n_bits,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'prob'</span>:np.<span class="bu">round</span>(probs, <span class="dv">3</span>).astype(<span class="bu">str</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        }).style.hide()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="dfd2ba71-5ac0-425d-b10d-04d3ffbf5057" class="cell" data-execution_count="38">
+<div id="dfd2ba71-5ac0-425d-b10d-04d3ffbf5057" class="cell" data-execution_count="66">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>uniform_bits <span class="op">=</span> [<span class="st">'00'</span>, <span class="st">'01'</span>, <span class="st">'10'</span>, <span class="st">'11'</span>]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>uniform_bits <span class="op">=</span> [<span class="st">'00'</span>, <span class="st">'01'</span>, <span class="st">'10'</span>, <span class="st">'11'</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <style type="text/css">
 </style>
 
-<table id="T_1b6a1" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_acc10" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_1b6a1_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">outcomes</th>
-<th id="T_1b6a1_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">bits</th>
-<th id="T_1b6a1_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">n_bits</th>
-<th id="T_1b6a1_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">prob</th>
+<th id="T_acc10_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">outcomes</th>
+<th id="T_acc10_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">bits</th>
+<th id="T_acc10_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">n_bits</th>
+<th id="T_acc10_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">prob</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_1b6a1_row0_col0" class="data row0 col0">A</td>
-<td id="T_1b6a1_row0_col1" class="data row0 col1">00</td>
-<td id="T_1b6a1_row0_col2" class="data row0 col2">2</td>
-<td id="T_1b6a1_row0_col3" class="data row0 col3">0.25</td>
+<td id="T_acc10_row0_col0" class="data row0 col0">A</td>
+<td id="T_acc10_row0_col1" class="data row0 col1">00</td>
+<td id="T_acc10_row0_col2" class="data row0 col2">2</td>
+<td id="T_acc10_row0_col3" class="data row0 col3">0.25</td>
 </tr>
 <tr class="even">
-<td id="T_1b6a1_row1_col0" class="data row1 col0">B</td>
-<td id="T_1b6a1_row1_col1" class="data row1 col1">01</td>
-<td id="T_1b6a1_row1_col2" class="data row1 col2">2</td>
-<td id="T_1b6a1_row1_col3" class="data row1 col3">0.25</td>
+<td id="T_acc10_row1_col0" class="data row1 col0">B</td>
+<td id="T_acc10_row1_col1" class="data row1 col1">01</td>
+<td id="T_acc10_row1_col2" class="data row1 col2">2</td>
+<td id="T_acc10_row1_col3" class="data row1 col3">0.25</td>
 </tr>
 <tr class="odd">
-<td id="T_1b6a1_row2_col0" class="data row2 col0">C</td>
-<td id="T_1b6a1_row2_col1" class="data row2 col1">10</td>
-<td id="T_1b6a1_row2_col2" class="data row2 col2">2</td>
-<td id="T_1b6a1_row2_col3" class="data row2 col3">0.25</td>
+<td id="T_acc10_row2_col0" class="data row2 col0">C</td>
+<td id="T_acc10_row2_col1" class="data row2 col1">10</td>
+<td id="T_acc10_row2_col2" class="data row2 col2">2</td>
+<td id="T_acc10_row2_col3" class="data row2 col3">0.25</td>
 </tr>
 <tr class="even">
-<td id="T_1b6a1_row3_col0" class="data row3 col0">D</td>
-<td id="T_1b6a1_row3_col1" class="data row3 col1">11</td>
-<td id="T_1b6a1_row3_col2" class="data row3 col2">2</td>
-<td id="T_1b6a1_row3_col3" class="data row3 col3">0.25</td>
+<td id="T_acc10_row3_col0" class="data row3 col0">D</td>
+<td id="T_acc10_row3_col1" class="data row3 col1">11</td>
+<td id="T_acc10_row3_col2" class="data row3 col2">2</td>
+<td id="T_acc10_row3_col3" class="data row3 col3">0.25</td>
 </tr>
 </tbody>
 </table>
@@ -656,147 +729,70 @@ p(x_3) &amp;= 0.125 \\
 p(x_4) &amp;= 0.125
 \end{aligned}
 \]</span></p>
-<div id="834b7981-4983-4787-b3a7-2805b41f4567" class="cell" data-execution_count="40">
+<p>We start, once again, by defining our outcomes and their probabilities, and plotting for clarity.</p>
+<div id="834b7981-4983-4787-b3a7-2805b41f4567" class="cell" data-execution_count="67">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>lang_probs <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lang_probs <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <pre><code>1.0</code></pre>
 </div>
 </div>
-<p>Let’s plot that again.</p>
-<div id="b9b9da8e-199c-4cd6-8644-d1906c80f536" class="cell" data-execution_count="42">
+<div id="b9b9da8e-199c-4cd6-8644-d1906c80f536" class="cell" data-execution_count="68">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plot_symbol_probs(lang_probs, language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot_symbol_probs(lang_probs, language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_entropy_files/figure-html/cell-23-output-1.png" width="546" height="354" class="figure-img"></p>
+<p><img src="02_entropy_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Looks familiar? Well, we’ve just created a language that seems to follow Zipf’s Law. It’s more simple than an actual language to make analysis easier, but the idea is the same:</p>
-<div id="e2779ea8-c1b8-4cf3-91e7-c414883a2f7f" class="cell" data-execution_count="48">
+<p>Looks familiar? Well, we’ve just created a language that seems to (roughly) follow Zipf’s Law. It’s more simple than an actual language to make analysis easier, but the idea is the same. We can import the functions we used in the first part and load the “Alice in Wonderland text” to illustrate the point.</p>
+<div id="1040401c-bd42-4539-af8c-4189de328797" class="cell" data-execution_count="69">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> gutenberg</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> RegexpTokenizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plots <span class="im">import</span> plot_word_dist</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils <span class="im">import</span> (</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    tokens_from_gutenberg_text, get_probs_from_counter</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="a0b75882-58fd-4378-8b03-b7aa49a54385" class="cell" data-execution_count="49">
+<div id="f4064eee-b595-4cc4-bc18-3d4d58354a2b" class="cell" data-execution_count="70">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokens_from_gutenberg_text(txt_name):</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    sents <span class="op">=</span> gutenberg.sents(txt_name)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> [word <span class="cf">for</span> sent <span class="kw">in</span> sents <span class="cf">for</span> word <span class="kw">in</span> sent]</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    tokenizer <span class="op">=</span> RegexpTokenizer(<span class="vs">r'\w+'</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> tokenizer.tokenize(<span class="st">" "</span>.join(words).lower())</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tokens</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>alice_tokens <span class="op">=</span> tokens_from_gutenberg_text(<span class="st">'carroll-alice.txt'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>alice_counts <span class="op">=</span> Counter(alice_tokens)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>alice_probs <span class="op">=</span> get_probs_from_counter(alice_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="1040401c-bd42-4539-af8c-4189de328797" class="cell" data-execution_count="50">
+<div id="8402eb79-af9f-49e4-8983-af325c56b6fa" class="cell" data-execution_count="71">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_probs_from_counter(counts):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    sum_ <span class="op">=</span> <span class="bu">sum</span>(counts.values())</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    probs <span class="op">=</span> Counter()</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token <span class="kw">in</span> counts:</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        probs[token] <span class="op">=</span> np.float32(np.format_float_positional(counts[token] <span class="op">/</span> sum_))</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot_word_dist(alice_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div id="f4064eee-b595-4cc4-bc18-3d4d58354a2b" class="cell" data-execution_count="52">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>alice_tokens <span class="op">=</span> tokens_from_gutenberg_text(<span class="st">'carroll-alice.txt'</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>alice_counts <span class="op">=</span> Counter(alice_tokens)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>alice_probs <span class="op">=</span> get_probs_from_counter(alice_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="d01e9542-55e1-4783-9ca9-b2bd20608009" class="cell" data-execution_count="77">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_zipf_dist(counts, p_type<span class="op">=</span><span class="st">'bar'</span>):</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    zipf_df <span class="op">=</span> (</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        pd.DataFrame.from_dict(<span class="bu">dict</span>(counts.most_common(<span class="dv">18</span>)), orient<span class="op">=</span><span class="st">'index'</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        .reset_index()</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        .rename(columns<span class="op">=</span>{<span class="st">'index'</span>: <span class="st">'Word'</span>, <span class="dv">0</span>: <span class="st">'Count'</span>})</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">70</span>)</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p_type <span class="op">==</span> <span class="st">'bar'</span>:</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        ax.bar(</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            zipf_df[<span class="st">"Word"</span>],</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>            zipf_df[<span class="st">"Count"</span>],</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>            edgecolor<span class="op">=</span><span class="st">"black"</span>,</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"lightblue"</span>,</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>            fill<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> p_type <span class="op">==</span> <span class="st">'line'</span>:</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        ax.plot(</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>            zipf_df[<span class="st">"Word"</span>],</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>            zipf_df[<span class="st">"Count"</span>],</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"blue"</span>,</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>            marker<span class="op">=</span><span class="st">"o"</span>,</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>            markersize<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>            markerfacecolor<span class="op">=</span><span class="st">"white"</span></span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ticks and labels (kept same behavior)</span></span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    _, xlabels <span class="op">=</span> plt.xticks()</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    _, ylabels <span class="op">=</span> plt.yticks()</span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels(xlabels, size<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    ax.set_yticklabels(ylabels, size<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># axis labels</span></span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Word"</span>, fontsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Probability"</span>, fontsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grid and layout style (consistent with your other figures)</span></span>
-<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="8402eb79-af9f-49e4-8983-af325c56b6fa" class="cell" data-execution_count="78">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plot_zipf_dist(alice_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/zz/3lhn60g1163cfzw5vrc_yrp00000gn/T/ipykernel_81698/4135042961.py:34: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
-  ax.set_xticklabels(xlabels, size=12)
-/var/folders/zz/3lhn60g1163cfzw5vrc_yrp00000gn/T/ipykernel_81698/4135042961.py:35: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
-  ax.set_yticklabels(ylabels, size=12)</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_entropy_files/figure-html/cell-29-output-2.png" width="757" height="373" class="figure-img"></p>
+<p><img src="02_entropy_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>If we now want to encode this language in bits, how do we go about it? Well, for starters we know how many bits we need on average. That knowledge is provided by our entropy function.</p>
-<div id="840703df-a048-4c6f-b595-95945b8cbc2c" class="cell" data-execution_count="80">
+<p>Returning to our artificial language <span class="math inline">\(A, B, C, D\)</span>, if we want to encode this language in bits, how do we go about it? Well, for starters we know how many bits we need on average. That knowledge is provided by our entropy function.</p>
+<div id="840703df-a048-4c6f-b595-95945b8cbc2c" class="cell" data-execution_count="72">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lang_entropy <span class="op">=</span> entropy_np(lang_probs)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>lang_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lang_entropy <span class="op">=</span> entropy_np(lang_probs)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>lang_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="80">
+<div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>1.75</code></pre>
 </div>
 </div>
@@ -811,11 +807,11 @@ p(x_4) &amp;= 0.125
 \]</span></p>
 <p>Does this work? Let’s try!</p>
 <p><strong>PROMPT:</strong> Calculate how many bits we have on average, if we weigh each by their corresponding probability.</p>
-<div id="6f464910-dc66-4b86-8b4c-306185034ec5" class="cell" data-execution_count="81">
-<details open="" class="code-fold">
+<div id="6f464910-dc66-4b86-8b4c-306185034ec5" class="cell">
+<details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>average_bits <span class="op">=</span> (<span class="fl">0.5</span> <span class="op">*</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">0.125</span><span class="op">*</span><span class="dv">3</span> <span class="op">+</span> <span class="fl">0.125</span><span class="op">*</span><span class="dv">3</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>average_bits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>average_bits <span class="op">=</span> (<span class="fl">0.5</span> <span class="op">*</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">0.125</span><span class="op">*</span><span class="dv">3</span> <span class="op">+</span> <span class="fl">0.125</span><span class="op">*</span><span class="dv">3</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>average_bits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>1.75</code></pre>
@@ -825,11 +821,11 @@ p(x_4) &amp;= 0.125
 <div id="a1790946-e134-4148-9ee2-3e7d085bed6d" class="cell" data-execution_count="83">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_bits(probs, n_bits):</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(np.multiply(probs, n_bits))</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>n_lang_bits <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>(average_bits(lang_probs, n_lang_bits) <span class="op">==</span> entropy_np(lang_probs)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_bits(probs, n_bits):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(np.multiply(probs, n_bits))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>n_lang_bits <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>(average_bits(lang_probs, n_lang_bits) <span class="op">==</span> entropy_np(lang_probs)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>True</code></pre>
@@ -848,8 +844,8 @@ D &amp; : 3
 <div id="2bf0be24-8721-4747-8a7e-260f6e6a2719" class="cell" data-execution_count="85">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lang_bits <span class="op">=</span> [<span class="st">'0'</span>, <span class="st">'10'</span>, <span class="st">'110'</span>, <span class="st">'111'</span>]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, lang_bits, lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>lang_bits <span class="op">=</span> [<span class="st">'0'</span>, <span class="st">'10'</span>, <span class="st">'110'</span>, <span class="st">'111'</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, lang_bits, lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <style type="text/css">
@@ -897,7 +893,6 @@ D &amp; : 3
 
 
 </section>
-</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1319,8 +1314,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notebooks/01_bits.html" class="pagination-link" aria-label="Bits: The Difference that Makes a Difference">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bits: The Difference that Makes a Difference</span></span>
+      <a href="../notebooks/01_bits.html" class="pagination-link" aria-label="Bit: The Difference which Makes a Difference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bit: The Difference which Makes a Difference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

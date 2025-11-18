@@ -817,7 +817,7 @@ p(x_4) &amp;= 0.125
 <pre><code>1.75</code></pre>
 </div>
 </div>
-<p>It matches the entropy! Let’s make that into a function.</p>
+<p>It matches the entropy! Let’s make that into a function. We will compare the output from our function with our <code>average_bits</code> to make sure they do the same thing.</p>
 <div id="a1790946-e134-4148-9ee2-3e7d085bed6d" class="cell" data-execution_count="83">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
@@ -841,8 +841,8 @@ C &amp; : 3 \\
 D &amp; : 3
 \end{aligned}
 \]</span></p>
-<div id="2bf0be24-8721-4747-8a7e-260f6e6a2719" class="cell" data-execution_count="85">
-<details open="" class="code-fold">
+<div id="2bf0be24-8721-4747-8a7e-260f6e6a2719" class="cell">
+<details class="code-fold">
 <summary>Code Toggle</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>lang_bits <span class="op">=</span> [<span class="st">'0'</span>, <span class="st">'10'</span>, <span class="st">'110'</span>, <span class="st">'111'</span>]</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, lang_bits, lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -889,6 +889,7 @@ D &amp; : 3
 </table>
 </div>
 </div>
+<p>Next, we will move on to the movement <em>across</em> the noisy channel, from <strong>transmitter</strong> to <strong>receiver</strong> and see how that passage has inspired such modern evaluation metrics in machine learning as the Kullback-Leibler or <span class="math inline">\(\mathbb{KL}\)</span> divergence and cross-entropy loss.</p>
 
 
 

@@ -8,7 +8,7 @@
 
 <meta name="description" content="A comprehensive introduction to classical information theory as conceived by Claude Shannon and its connections to neural networks and large language models today.">
 
-<title>From Bits to Embeddings – A Critical Introduction to Information Theory</title>
+<title>5&nbsp; Word2Vec as Noisy Channel (TBD) – From Bits to Embeddings – A Critical Introduction to Information Theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./notebooks/01_bits.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e2f21b8b26cfe1f95c57aeb85eb423d2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notebooks/05_attention.html" rel="next">
+<link href="../notebooks/03_kl_divergence.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e2f21b8b26cfe1f95c57aeb85eb423d2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -162,18 +163,18 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="From Bits to Embeddings – A Critical Introduction to Information Theory">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="5&nbsp; Word2Vec as Noisy Channel (TBD) – From Bits to Embeddings – A Critical Introduction to Information Theory">
 <meta property="og:description" content="A comprehensive introduction to classical information theory as conceived by Claude Shannon and its connections to neural networks and large language models today.">
-<meta property="og:image" content="img/shannon_general_communication_system_diagram.png">
+<meta property="og:image" content="../img/shannon_general_communication_system_diagram.png">
 <meta property="og:site_name" content="From Bits to Embeddings – A Critical Introduction to Information Theory">
-<meta name="twitter:title" content="From Bits to Embeddings – A Critical Introduction to Information Theory">
+<meta name="twitter:title" content="5&nbsp; Word2Vec as Noisy Channel (TBD) – From Bits to Embeddings – A Critical Introduction to Information Theory">
 <meta name="twitter:description" content="A comprehensive introduction to classical information theory as conceived by Claude Shannon and its connections to neural networks and large language models today.">
-<meta name="twitter:image" content="img/shannon_general_communication_system_diagram.png">
+<meta name="twitter:image" content="../img/shannon_general_communication_system_diagram.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -182,7 +183,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Part I — Introduction</a></li><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Why Information Theory?</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04_word2vec.html">Part III — Language Models (TBD)</a></li><li class="breadcrumb-item"><a href="../notebooks/04_word2vec.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word2Vec as Noisy Channel (TBD)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -197,7 +198,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">From Bits to Embeddings – A Critical Introduction to Information Theory</a> 
+      <a href="../">From Bits to Embeddings – A Critical Introduction to Information Theory</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -218,7 +219,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Why Information Theory?</span></span></a>
   </div>
 </li>
@@ -235,19 +236,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/01_bits.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/01_bits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bit: The Difference which Makes a Difference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/02_entropy.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/02_entropy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Entropy: Expected Differences</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/03_kl_divergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/03_kl_divergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">KL Divergence: Differences Between Expected Differences</span></span></a>
   </div>
 </li>
@@ -264,13 +265,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/04_word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/04_word2vec.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word2Vec as Noisy Channel (TBD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notebooks/05_attention.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/05_attention.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Transmitters to Transformers (TBD)</span></span></a>
   </div>
 </li>
@@ -278,38 +279,20 @@ window.Quarto = {
   </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#why-information-theory" id="toc-why-information-theory" class="nav-link active" data-scroll-target="#why-information-theory"><span class="header-section-number">1</span> Why Information Theory?</a>
-  <ul>
-  <li><a href="#the-noisy-channel-and-the-conduit-metaphor" id="toc-the-noisy-channel-and-the-conduit-metaphor" class="nav-link" data-scroll-target="#the-noisy-channel-and-the-conduit-metaphor"><span class="header-section-number">1.1</span> The Noisy Channel and the Conduit Metaphor</a></li>
-  <li><a href="#from-technics-to-semantics" id="toc-from-technics-to-semantics" class="nav-link" data-scroll-target="#from-technics-to-semantics"><span class="header-section-number">1.2</span> From Technics to Semantics</a></li>
-  <li><a href="#historical-and-technical-literacy" id="toc-historical-and-technical-literacy" class="nav-link" data-scroll-target="#historical-and-technical-literacy"><span class="header-section-number">1.3</span> Historical and Technical Literacy</a></li>
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation"><span class="header-section-number">1.4</span> Citation</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Part I — Introduction</a></li><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Why Information Theory?</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04_word2vec.html">Part III — Language Models (TBD)</a></li><li class="breadcrumb-item"><a href="../notebooks/04_word2vec.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word2Vec as Noisy Channel (TBD)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">From Bits to Embeddings – A Critical Introduction to Information Theory</h1>
-<p class="subtitle lead">Understanding how the Noisy Channel metaphor underlies both bits and embeddings</p>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word2Vec as Noisy Channel (TBD)</span></h1>
 </div>
 
-<div>
-  <div class="description">
-    A comprehensive introduction to classical information theory as conceived by Claude Shannon and its connections to neural networks and large language models today.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -324,64 +307,10 @@ window.Quarto = {
 </header>
 
 
-<section id="why-information-theory" class="level1 page-columns page-full" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Why Information Theory?</h1>
-<p>This website provides supplementary context for the articles <a href="https://journals.sagepub.com/doi/10.1177/20539517251386055">“Cosine Capital: Large language models and the embedding of all things”</a> (Big Data &amp; Society, October 2025) and <a href="https://www.e-flux.com/journal/151/652643/taking-ai-into-the-tunnels">“Taking AI into the Tunnels”</a> (e-flux, January 2025), along with some upcoming articles on the same topic. More than that, it provides a comprehensive introduction to classical information theory as it was conceived by Claude Shannon and its connections and impacts on neural network and large language model (LLM) research today through a parallel reading of information theory in the social sciences since World War II.</p>
-<section id="the-noisy-channel-and-the-conduit-metaphor" class="level2 page-columns page-full" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="the-noisy-channel-and-the-conduit-metaphor"><span class="header-section-number">1.1</span> The Noisy Channel and the Conduit Metaphor</h2>
-<p>Information theory relies on a very particular metaphor that understand communication as a sort of “conduit”: You encode a message with a key, send the encoded message to a receiver, who decodes it with the same key, and reads the message. For instance, if you write “SOS” in Morse code, they “key” is the table that tells you how many dots (.) and dashes (-) to use for the letters S and O. In this case, the encoded version of your message is “…—…”, i.e.&nbsp;three dots, three dashes, and, again, three dots.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Reddy, M. (1993). The conduit metaphor. In <em>Metaphor and thought</em>, 2nd ed., pp.&nbsp;164–201. Cambridge University Press. <br> <br> Lakoff, G., &amp; Johnson, M. (2008). <em>Metaphors we live by</em>. University of Chicago Press.</p>
-</div></div><p>No where is this logic as neatly encapsulated as in the “The General Communications System” deviced by Claude Shannon, who is widely concidered the father of modern information theory. In this diagram, a sender picks a message (SOS), encodes it (… — …) using an <a href="https://en.wikipedia.org/wiki/Telegraph_key">appropriate device</a>, sends it over a channel such as telegraph wires to a <a href="https://en.wikipedia.org/wiki/Telegraph_sounder">receiver</a>, that then decodes the original “SOS” message from the dots and dashes. In the process, physical distortion on the line might scramble the encoded message, perhaps converting it to “… — ..-”. In this case, the receiver would decode it as “SOU” since “..-” stands for “U” in Morse. The wrong message would be received.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src="img/shannon_general_communication_system_diagram.png" class="img-fluid"> A “General Communications System” as depicted in Shannon, C. E. (1948). “A Mathematical Theory of Communication”. <em>The Bell System Technical Journal</em>, 27(3), 379–423. . <a href="https://ieeexplore.ieee.org/document/6773024">[URL]</a></p>
-</div></div><p>Language modelling was from the very start an integral part of this venture. Not only did Shannon use language, in addition to coin tosses, as the quintessential example to explain and illustrate his concept of information; he also published a paper on the “Entropy of English” where test subjects were given sentences with redacted words and made to guess the missing words. This sort of “masking” of words is also how LLMs are trained today. Indeed, what we today know as “language modelling” was, as I highlight in my doctoral dissertation, for a long time called the “Shannon Game.”</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Brunila, M. (2024). <em>Information &amp; Meaning in the Social Sciences: Enclosure, Capital, Metaphor &amp; Method</em>. Ph.D.&nbsp;thesis, McGill University. <a href="https://www.proquest.com/docview/3235005234/abstract/A09383A43EA4997PQ/1">[URL]</a></p>
-</div></div></section>
-<section id="from-technics-to-semantics" class="level2 page-columns page-full" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="from-technics-to-semantics"><span class="header-section-number">1.2</span> From Technics to Semantics</h2>
-<p>While Shannon’s technical definition of communication in itself is quite straightforward, the general metaphor has taken an astonishing hold of how we understand communication more broadly, as linguists like Michael Reddy and George Lakoff have highlighted. Already in his introduction to Shannon’s seminal book on information theory, Warren Weaver suggested that words might encode intentions that are then decoded from the words. Beyond the technical level of encoding words in engineering, there was also the “semantic level” of transmitting the desired meaning and the “effectiveness problem” on making received meaning affect conduct in a desired way. If words are decoded wrong, false intentions are deciphered from them, resulting in undesired behavior. This generalization of communication more broadly as a practice of encoding and decoding was explicitly picked up and elaborated on in the social sciences by people like Gregory Bateson, Talcott Parsons, and Niklas Luhmann, but is equally evident when inspecting closely the works of other influential social thinkers such as Erving Goffman who thought of communication as an “information game.”</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Weaver, W. (1953). Recent contributions to the mathematical theory of communication. <em>ETC: A Review of General Semantics</em>, 10(4), 261–281. <br> <br> Goffman, E. (1959). <em>The presentation of self in everyday life</em> (First Anchor Books Edition). Anchor Books.</p>
-</div></div><p>In a sense, the LLM closes the circle, as computational systems that rely on the technical encoding of words as “embeddings”, are now presented and perceived as semantically capable agents. This is why I have argued that the noisy channel is perhaps <em>the</em> fundamental metaphor guiding the production of language between AI systems and humans today, with LLM embeddings becoming the encoders and decoders of meaning. Just as the conception of bits and information entropy changed how we think about communication after World War II, LLMs are already changing how we think about human communication. What’s more, the LLM had hardly itself been conceivable if the noisy channel had not been generalized to human communication more broadly. Part and parcel of this process was the reduction of semantics to the observed “distributional” patterns between words and the “company they keep”, which suggested that similar words are found with similar sets of words.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Bender, E. M., &amp; Koller, A. (2020). Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data. <em>Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics</em>, 5185–5198. <a href="https://doi.org/10.18653/v1/2020.acl-main.463">[URL]</a> <br> <br> Brunila, M. (2025). Cosine capital: Large language models and the embedding of all things. <em>Big Data &amp; Society</em>, 12(4). <a href="https://doi.org/10.1177/20539517251386055">[URL]</a> <br> <br> Brunila, M., &amp; LaViolette, J. (2022). What company do words keep? Revisiting the distributional semantics of J.R. Firth &amp; Zellig Harris. Proceedings of the 2022 Conference of the NAACL, 4403–4417. <a href="https://aclanthology.org/2022.naacl-main.327">[URL]</a></p>
-</div></div></section>
-<section id="historical-and-technical-literacy" class="level2 page-columns page-full" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="historical-and-technical-literacy"><span class="header-section-number">1.3</span> Historical and Technical Literacy</h2>
-<p>Given this tight coupling between mathematical information theory and notions of communication in the social sciences and the popular imaginary, I have often found it perplexing that social scientists do not seem to engage with information theory. Indeed, for my PhD, I decided that I had to fully grasp the models and concepts of early information theory and their connection to LLMs today, along with the parallel back-and-forth transfer of these ideas between the engineering and social sciences.</p>
-<p>On this website, I will, in the first instance, use Shannon’s diagram of a General Communications System to provide not only a <em>technical</em> introduction to classical information theory but also, through annotations and citations, a running commentary on how these technical concepts have been interpreted or instrumentalized in the social sciences. Starting from the encoding of words into the zeroes and ones of <strong>bits</strong>, I move to show how expected information in bits is quantified through <strong>information entropy</strong>, and compared through <strong>relative entropy</strong>, <strong>information</strong> or <strong>Kullback-Leibler divergence</strong>, and <strong>cross-entropy</strong>. In the second part, I show how these tools and metaphors have gained new force through their application in the encoder-decoder architectures that are implicitly or explicitly implemented in both small (Word2Vec) and large (Transformer) language models, with a particular emphasis on embeddings and their contextualized representations through the mechanism knowns as “attention.”</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>At this time, in November 2025, only the first part on information theory has been written, but I expect the second part to be ready sometime in late 2025 and early 2026.</p>
-</div></div><p>In this sense, this website serves at least two functions:</p>
-<ul>
-<li>A technical, historical, and philosophical introduction to information theory to improve the technical “information literacy” of social scientists, as well as the “historical literacy” of engineers</li>
-<li>An appendix to my work in Big Data &amp; Society and elsewhere</li>
-</ul>
-</section>
-<section id="citation" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="citation"><span class="header-section-number">1.4</span> Citation</h2>
-<p>To cite this page, please use:</p>
-<pre><code>@online{brunila2025informationtheory,
-  author = {Brunila, Mikael},
-  title = {From Bits to Embeddings – A Critical Introduction to Information Theory},
-  year = {2025},
-  url = {https://mikaelbrunila.com/information-theory},
-  note = {Online tutorial},
-  langid = {en}
-}</code></pre>
+<p>This section remains to be polished enough for publication. Estimating it will be out in December 2025.</p>
 
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -803,10 +732,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../notebooks/03_kl_divergence.html" class="pagination-link" aria-label="KL Divergence: Differences Between Expected Differences">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">KL Divergence: Differences Between Expected Differences</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./notebooks/01_bits.html" class="pagination-link" aria-label="Bit: The Difference which Makes a Difference">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Bit: The Difference which Makes a Difference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notebooks/05_attention.html" class="pagination-link" aria-label="From Transmitters to Transformers (TBD)">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">From Transmitters to Transformers (TBD)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

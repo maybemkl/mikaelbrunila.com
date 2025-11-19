@@ -287,7 +287,7 @@ window.Quarto = {
   <li><a href="#the-noisy-channel-and-the-conduit-metaphor" id="toc-the-noisy-channel-and-the-conduit-metaphor" class="nav-link" data-scroll-target="#the-noisy-channel-and-the-conduit-metaphor"><span class="header-section-number">1.1</span> The Noisy Channel and the Conduit Metaphor</a></li>
   <li><a href="#from-technics-to-semantics" id="toc-from-technics-to-semantics" class="nav-link" data-scroll-target="#from-technics-to-semantics"><span class="header-section-number">1.2</span> From Technics to Semantics</a></li>
   <li><a href="#historical-and-technical-literacy" id="toc-historical-and-technical-literacy" class="nav-link" data-scroll-target="#historical-and-technical-literacy"><span class="header-section-number">1.3</span> Historical and Technical Literacy</a></li>
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation"><span class="header-section-number">1.4</span> Citation</a></li>
+  <li><a href="#cite-and-contribute" id="toc-cite-and-contribute" class="nav-link" data-scroll-target="#cite-and-contribute"><span class="header-section-number">1.4</span> Cite and contribute</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -333,14 +333,14 @@ window.Quarto = {
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Reddy, M. (1993). The conduit metaphor. In <em>Metaphor and thought</em>, 2nd ed., pp.&nbsp;164–201. Cambridge University Press. <br> <br> Lakoff, G., &amp; Johnson, M. (2008). <em>Metaphors we live by</em>. University of Chicago Press.</p>
-</div></div><p>No where is this logic as neatly encapsulated as in the “The General Communications System” deviced by Claude Shannon, who is widely concidered the father of modern information theory. In this diagram, a sender picks a message (SOS), encodes it (… — …) using an <a href="https://en.wikipedia.org/wiki/Telegraph_key">appropriate device</a>, sends it over a channel such as telegraph wires to a <a href="https://en.wikipedia.org/wiki/Telegraph_sounder">receiver</a>, that then decodes the original “SOS” message from the dots and dashes. In the process, physical distortion on the line might scramble the encoded message, perhaps converting it to “… — ..-”. In this case, the receiver would decode it as “SOU” since “..-” stands for “U” in Morse. The wrong message would be received.</p>
+</div></div><p>Nowhere is this logic as neatly encapsulated as in the “The General Communications System” deviced by Claude Shannon, who is widely concidered the father of modern information theory. In this diagram, a sender picks a message (e.g., “SOS”), encodes it (e.g., “… — …”) using an <a href="https://en.wikipedia.org/wiki/Telegraph_key">appropriate device</a>, sends it over a channel such as telegraph wires to a <a href="https://en.wikipedia.org/wiki/Telegraph_sounder">receiver</a>, that then decodes the original “SOS” message from the dots and dashes. In the process, physical distortion or “noise” on the line might scramble the encoded message, perhaps converting it to “… — ..-”. In this case, the receiver would decode it as “SOU” since “..-” stands for “U” in Morse. The wrong message would be received.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><img src="img/shannon_general_communication_system_diagram.png" class="img-fluid"> A “General Communications System” as depicted in Shannon, C. E. (1948). “A Mathematical Theory of Communication”. <em>The Bell System Technical Journal</em>, 27(3), 379–423. . <a href="https://ieeexplore.ieee.org/document/6773024">[URL]</a></p>
+<p><img src="img/shannon_general_communication_system_diagram.png" class="img-fluid"> A “General Communications System” as depicted in Shannon, C. E. (1948). <a href="https://ieeexplore.ieee.org/document/6773024">[URL]</a></p>
 </div></div><p>Language modelling was from the very start an integral part of this venture. Not only did Shannon use language, in addition to coin tosses, as the quintessential example to explain and illustrate his concept of information; he also published a paper on the “Entropy of English” where test subjects were given sentences with redacted words and made to guess the missing words. This sort of “masking” of words is also how LLMs are trained today. Indeed, what we today know as “language modelling” was, as I highlight in my doctoral dissertation, for a long time called the “Shannon Game.”</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Brunila, M. (2024). <em>Information &amp; Meaning in the Social Sciences: Enclosure, Capital, Metaphor &amp; Method</em>. Ph.D.&nbsp;thesis, McGill University. <a href="https://www.proquest.com/docview/3235005234/abstract/A09383A43EA4997PQ/1">[URL]</a></p>
+<p>Shannon, C. E. (1951). Prediction and Entropy of Printed English. <em>Bell System Technical Journal</em>, 30(1), 50–64.<a href="https://doi.org/10.1002/j.1538-7305.1951.tb01366.x">[URL]</a> <br> <br> Brunila, M. (2024). <em>Information &amp; Meaning in the Social Sciences: Enclosure, Capital, Metaphor &amp; Method</em>. Ph.D.&nbsp;thesis, McGill University. <a href="https://www.proquest.com/docview/3235005234/abstract/A09383A43EA4997PQ/1">[URL]</a></p>
 </div></div></section>
 <section id="from-technics-to-semantics" class="level2 page-columns page-full" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="from-technics-to-semantics"><span class="header-section-number">1.2</span> From Technics to Semantics</h2>
@@ -355,7 +355,7 @@ window.Quarto = {
 </div></div></section>
 <section id="historical-and-technical-literacy" class="level2 page-columns page-full" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="historical-and-technical-literacy"><span class="header-section-number">1.3</span> Historical and Technical Literacy</h2>
-<p>Given this tight coupling between mathematical information theory and notions of communication in the social sciences and the popular imaginary, I have often found it perplexing that social scientists do not seem to engage with information theory. Indeed, for my PhD, I decided that I had to fully grasp the models and concepts of early information theory and their connection to LLMs today, along with the parallel back-and-forth transfer of these ideas between the engineering and social sciences.</p>
+<p>Given this tight coupling between mathematical information theory and notions of communication in the social sciences and the popular imaginary, I have often found it perplexing that social scientists do not seem to engage much with information theory. This is why, for my PhD, I decided that I had to fully grasp the models and concepts of early information theory and their connection to LLMs today, along with the parallel back-and-forth transfer of these ideas between the engineering and social sciences.</p>
 <p>On this website, I will, in the first instance, use Shannon’s diagram of a General Communications System to provide not only a <em>technical</em> introduction to classical information theory but also, through annotations and citations, a running commentary on how these technical concepts have been interpreted or instrumentalized in the social sciences. Starting from the encoding of words into the zeroes and ones of <strong>bits</strong>, I move to show how expected information in bits is quantified through <strong>information entropy</strong>, and compared through <strong>relative entropy</strong>, <strong>information</strong> or <strong>Kullback-Leibler divergence</strong>, and <strong>cross-entropy</strong>. In the second part, I show how these tools and metaphors have gained new force through their application in the encoder-decoder architectures that are implicitly or explicitly implemented in both small (Word2Vec) and large (Transformer) language models, with a particular emphasis on embeddings and their contextualized representations through the mechanism knowns as “attention.”</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -366,9 +366,10 @@ window.Quarto = {
 <li>An appendix to my work in Big Data &amp; Society and elsewhere</li>
 </ul>
 </section>
-<section id="citation" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="citation"><span class="header-section-number">1.4</span> Citation</h2>
-<p>To cite this page, please use:</p>
+<section id="cite-and-contribute" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="cite-and-contribute"><span class="header-section-number">1.4</span> Cite and contribute</h2>
+<p>If you find any factual errors or otherwise want to contribute, feel free to either start and issue or open a pull request on <a href="https://github.com/maybemkl/cosine_capital">GitHub</a>.</p>
+<p>To cite this website, please use:</p>
 <pre><code>@online{brunila2025informationtheory,
   author = {Brunila, Mikael},
   title = {From Bits to Embeddings – A Critical Introduction to Information Theory},
@@ -384,6 +385,62 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<footer class="footer py-3 border-top">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="mb-1">
+          <a href="https://github.com/maybemkl/cosine_capital" target="_blank" rel="noopener" class="text-decoration-none">
+            <i class="bi bi-github" aria-hidden="true"></i> GitHub
+          </a>
+        </p>
+        <p class="mb-0 text-muted small">
+          © 2025 Mikael Brunila. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  position: relative;
+  clear: both;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  background: transparent !important;
+  z-index: 1;
+}
+
+.footer .container-fluid {
+  background: transparent !important;
+}
+
+.footer a {
+  color: inherit;
+}
+
+.footer a:hover {
+  opacity: 0.8;
+}
+
+.footer .bi {
+  margin-right: 0.25rem;
+}
+
+/* Ensure sidebar doesn't overlap footer */
+.sidebar {
+  position: relative !important;
+  z-index: 0;
+}
+
+/* Ensure main content doesn't overlap footer */
+.quarto-layout-row {
+  padding-bottom: 100px;
+}
+</style>
+
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

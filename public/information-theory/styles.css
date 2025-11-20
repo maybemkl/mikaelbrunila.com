@@ -22,13 +22,16 @@ details.code-fold:has(.hide-code-block) {
   display: none !important;
 }
 
-/* Prevent TOC from overflowing footer */
-.sidebar {
-  padding-bottom: 100px !important;
+/* Prevent TOC from overflowing footer - preserve sticky behavior */
+.sidebar.floating {
+  position: sticky !important;
+  top: 0;
+  align-self: flex-start;
 }
 
-.sidebar nav[role="doc-toc"] {
-  max-height: calc(100vh - 180px);
+.sidebar.floating nav[role="doc-toc"] {
+  max-height: calc(100vh - 280px);
   overflow-y: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }

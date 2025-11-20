@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e2f21b8b26cfe1f95c57aeb85eb423d2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-70bf0c3f11056994a89d7fb0c631422b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -166,6 +166,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 })();
 </script>
 
+<script>
+(function() {
+  function addSponsorBox() {
+    // Check if already added
+    if (document.querySelector('.sidebar-sponsor-box')) return;
+    
+    // Find the sidebar container
+    const sidebar = document.querySelector('.sidebar') || 
+                    document.querySelector('#quarto-sidebar') ||
+                    document.querySelector('[role="complementary"]');
+    
+    if (!sidebar) {
+      console.log('Sidebar not found');
+      return;
+    }
+    
+    // Try to find search input or form
+    const searchInput = sidebar.querySelector('input[type="search"]') ||
+                       sidebar.querySelector('input[type="text"]') ||
+                       sidebar.querySelector('#quarto-search') ||
+                       sidebar.querySelector('.quarto-search');
+    
+    const sponsorBox = document.createElement('div');
+    sponsorBox.className = 'sidebar-sponsor-box';
+    sponsorBox.innerHTML = `
+      <div class="sponsor-content">
+        <span class="sponsor-header">Sponsor me:</span>
+        <div class="sponsor-links">
+          <a href="https://buymeacoffee.com/mikaelbrunila" target="_blank" rel="noopener" class="sponsor-link" title="Buy Me a Coffee">
+            <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" class="sponsor-icon"><path d="m20.216 6.415-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.196-.366-.231-.572-.065-.378-.125-.756-.192-1.133-.057-.325-.102-.69-.25-.987-.195-.4-.597-.634-.996-.788a5.723 5.723 0 0 0-.626-.194c-1-.263-2.05-.36-3.077-.416a25.834 25.834 0 0 0-3.7.062c-.915.083-1.88.184-2.75.5-.318.116-.646.256-.888.501-.297.302-.393.77-.177 1.146.154.267.415.456.692.58.36.162.737.284 1.123.366 1.075.238 2.189.331 3.287.37 1.218.05 2.437.01 3.65-.118.299-.033.598-.073.896-.119.352-.054.578-.513.474-.834-.124-.383-.457-.531-.834-.473-.466.074-.96.108-1.382.146-1.177.08-2.358.082-3.536.006a22.228 22.228 0 0 1-1.157-.107c-.086-.01-.18-.025-.258-.036-.243-.036-.484-.08-.724-.13-.111-.027-.111-.185 0-.212h.005c.277-.06.557-.108.838-.147h.002c.131-.009.263-.032.394-.048a25.076 25.076 0 0 1 3.426-.12c.674.019 1.347.067 2.017.144l.228.031c.267.04.533.088.798.145.392.085.895.113 1.07.542.055.137.08.288.111.431l.319 1.484a.237.237 0 0 1-.199.284h-.003c-.037.006-.075.01-.112.015a36.704 36.704 0 0 1-4.743.295 37.059 37.059 0 0 1-4.699-.304c-.14-.017-.293-.042-.417-.06-.326-.048-.649-.108-.973-.161-.393-.065-.768-.032-1.123.161-.29.16-.527.404-.675.701-.154.316-.199.66-.267 1-.069.34-.176.707-.135 1.056.087.753.613 1.365 1.37 1.502a39.69 39.69 0 0 0 11.343.376.483.483 0 0 1 .535.53l-.071.697-1.018 9.907c-.041.41-.047.832-.125 1.237-.122.637-.553 1.028-1.182 1.171-.577.131-1.165.2-1.756.205-.656.004-1.31-.025-1.966-.022-.699.004-1.556-.06-2.095-.58-.475-.458-.54-1.174-.605-1.793l-.731-7.013-.322-3.094c-.037-.351-.286-.695-.678-.678-.336.015-.718.3-.678.679l.228 2.185.949 9.112c.147 1.344 1.174 2.068 2.446 2.272.742.12 1.503.144 2.257.156.966.016 1.942.053 2.892-.122 1.408-.258 2.465-1.198 2.616-2.657.34-3.332.683-6.663 1.024-9.995l.215-2.087a.484.484 0 0 1 .39-.426c.402-.078.787-.212 1.074-.518.455-.488.546-1.124.385-1.766zm-1.478.772c-.145.137-.363.201-.578.233-2.416.359-4.866.54-7.308.46-1.748-.06-3.477-.254-5.207-.498-.17-.024-.353-.055-.47-.18-.22-.236-.111-.71-.054-.995.052-.26.152-.609.463-.646.484-.057 1.046.148 1.526.22.577.088 1.156.159 1.737.212 2.48.226 5.002.19 7.472-.14.45-.06.899-.13 1.345-.21.399-.072.84-.206 1.08.206.166.281.188.657.162.974a.544.544 0 0 1-.169.364zm-6.159 3.9c-.862.37-1.84.788-3.109.788a5.884 5.884 0 0 1-1.569-.217l.877 9.004c.065.78.717 1.38 1.5 1.38 0 0 1.243.065 1.658.065.447 0 1.786-.065 1.786-.065.783 0 1.434-.6 1.499-1.38l.94-9.95a3.996 3.996 0 0 0-1.322-.238c-.826 0-1.491.284-2.26.613z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://ko-fi.com/mikaelbrunila" target="_blank" rel="noopener" class="sponsor-link" title="Ko-fi">
+            <svg width="24" height="24" viewBox="0 0 90 90" role="img" xmlns="http://www.w3.org/2000/svg" class="sponsor-icon"><path d="M 45 90 L 45 90 C 20.147 90 0 69.853 0 45 v 0 C 0 20.147 20.147 0 45 0 h 0 c 24.853 0 45 20.147 45 45 v 0 C 90 69.853 69.853 90 45 90 z" fill="#333333"/><path d="M 63.672 24.897 c -4.418 -0.387 -7.053 -0.542 -19.613 -0.542 c -8.449 0 -14.495 0.078 -19.068 0.775 c -6.433 0.931 -8.993 4.573 -8.993 11.084 H 16 c 0 10 0.62 16.433 3.876 22.402 c 3.72 6.9 10.464 9.535 18.139 9.535 h 2.402 c 10.078 0 14.962 -4.884 17.675 -9.147 c 1.318 -2.171 2.48 -4.573 3.1 -7.597 l 0.465 -1.938 h 2.791 c 6.202 0 11.55 -5.037 11.55 -11.473 v -1.162 C 75.998 29.625 71.503 25.825 63.672 24.897 z M 49.643 53.617 c -2.093 2.094 -5.502 4.264 -7.829 5.66 c -0.622 0.387 -1.396 0.62 -2.326 0.62 c -0.776 0 -1.473 -0.233 -2.171 -0.62 c -2.324 -1.395 -5.735 -3.566 -7.906 -5.66 c -3.255 -3.102 -5.813 -7.055 -5.813 -11.628 h -0.002 c 0 -4.962 3.567 -9.38 8.993 -9.38 c 3.18 0 5.426 1.627 6.9 3.875 c 1.629 -2.247 3.8 -3.875 6.977 -3.875 c 5.349 0 9.069 4.418 9.069 9.38 C 55.534 46.564 52.977 50.517 49.643 53.617 z M 63.597 44.084 c -1.24 0 -1.938 -0.698 -1.938 -1.629 v -8.758 c 0 -0.931 0.698 -1.629 1.938 -1.629 c 3.953 0 6.124 2.327 6.124 6.046 C 69.721 41.835 67.55 44.084 63.597 44.084 z" fill="#f8f9fa"/></svg>
+          </a>
+          <a href="https://github.com/sponsors/maybemkl" target="_blank" rel="noopener" class="sponsor-link" title="GitHub Sponsors">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="https://www.paypal.com/donate/?business=LEDZ3LJSRSRUN&no_recurring=0&item_name=I+create+tutorials+for+information+theory+and+geospatial+data+science%21&currency_code=EUR" target="_blank" rel="noopener" class="sponsor-link" title="PayPal">
+            <i class="bi bi-paypal"></i>
+          </a>
+        </div>
+      </div>
+    `;
+    
+    // If we found a search input, insert after its parent form/div
+    if (searchInput) {
+      const searchContainer = searchInput.closest('form') || 
+                              searchInput.closest('div') || 
+                              searchInput.parentElement;
+      if (searchContainer && searchContainer.nextSibling) {
+        searchContainer.parentElement.insertBefore(sponsorBox, searchContainer.nextSibling);
+      } else if (searchContainer) {
+        searchContainer.parentElement.appendChild(sponsorBox);
+      } else {
+        sidebar.insertBefore(sponsorBox, sidebar.firstChild);
+      }
+    } else {
+      // If no search found, insert at the beginning of sidebar (before TOC)
+      const toc = sidebar.querySelector('nav[role="doc-toc"]');
+      if (toc) {
+        sidebar.insertBefore(sponsorBox, toc);
+      } else {
+        sidebar.insertBefore(sponsorBox, sidebar.firstChild);
+      }
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addSponsorBox);
+  } else {
+    addSponsorBox();
+  }
+  
+  // Also try after delays in case content loads dynamically
+  setTimeout(addSponsorBox, 500);
+  setTimeout(addSponsorBox, 1000);
+  setTimeout(addSponsorBox, 2000);
+})();
+</script>
+
+<style>
+.sidebar-sponsor-box {
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+  background: #f8f9fa;
+  border: 0.5px solid #dee2e6;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+}
+
+.sponsor-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.1rem;
+}
+
+.sponsor-header {
+  color: #343a40;
+  font-size: 0.85rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.sponsor-links {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.sponsor-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2761e3;
+  text-decoration: none;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  font-size: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.sponsor-link:hover {
+  background-color: #e9ecef;
+  color: #1f4eb6;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+.sponsor-link .bi {
+  font-size: 1.1rem;
+}
+
+.sponsor-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
+  object-fit: contain;
+}
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -211,7 +354,7 @@ window.Quarto = {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -247,13 +390,13 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Part I — Introduction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
@@ -293,13 +436,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Part III — Language Models (TBD)</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/04_word2vec.html" class="sidebar-item-text sidebar-link">
@@ -316,8 +459,8 @@ window.Quarto = {
   </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#transmitter-and-receiver-expectation-vs.-reality" id="toc-transmitter-and-receiver-expectation-vs.-reality" class="nav-link active" data-scroll-target="#transmitter-and-receiver-expectation-vs.-reality"><span class="header-section-number">4.1</span> Transmitter and Receiver: Expectation vs.&nbsp;Reality</a></li>
@@ -332,7 +475,7 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01_bits.html">Part II — Information Theory</a></li><li class="breadcrumb-item"><a href="../notebooks/03_kl_divergence.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">KL Divergence: Differences Between Expected Differences</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -353,6 +496,8 @@ window.Quarto = {
 </header>
 
 
+<section id="transmitter-and-receiver-expectation-vs.-reality" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="transmitter-and-receiver-expectation-vs.-reality"><span class="header-section-number">4.1</span> Transmitter and Receiver: Expectation vs.&nbsp;Reality</h2>
 <p>Let’s reiterate what we’ve learned so far.</p>
 <p>First, we’ve learned to calculate:</p>
 <ol type="1">
@@ -364,13 +509,10 @@ window.Quarto = {
 <li>The information entropy of <em>one</em> distribution consists of the weighted sum of bits.</li>
 <li>Entropy measures surprise. The more uniform, the higher the entropy. An entirely uniform distribution is the “maximum entropy” distribution.</li>
 </ol>
-<section id="transmitter-and-receiver-expectation-vs.-reality" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="transmitter-and-receiver-expectation-vs.-reality"><span class="header-section-number">4.1</span> Transmitter and Receiver: Expectation vs.&nbsp;Reality</h2>
-<div id="778e68fe" class="cell" data-execution_count="57">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>HTML(noisy_channel_transmitter_receiver_html)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<p>What this amounts to, is a comprehensive understanding of how to <em>en</em>code messages, the “transmitter” part of the noisy channel, if you will. However, now it’s time to look at the evaluation of the efficiency of our encoding, and the reception and <em>de</em>coding of these messages through the receiver.</p>
+<p>On a more general level, both the efficient encoding of messages and their accurate decoding gets us in the domain of <strong>comparing distributions</strong>. In the first case, we are trying to compare encodings to determine which one is the most efficient. In the second case, we are comparing the signal we encoded through the transmitter with the one received through the receiver, in order to ascertain their similarity.</p>
+<p>We can think of modern machine learning in a similar way. When we train a model to predict outcomes, we want to compare our predictions with the observed outcomes in the data. This is why the tools that we introduce in this chapter, culminating in cross-entropy, are so crucial for most AI models today. And this is also one way in which the Noisy Channel lives on as a metaphor that structures our world in very material and real ways.</p>
+<div id="778e68fe" class="cell">
 <div class="cell-output cell-output-display" data-execution_count="57">
 <!-- Interactive version: self-contained HTML + JS tooltip hover (works in Quarto + Jupyter when trusted) -->
 <div id="shannon-diagram-transmitter-to-receiver" style="background:#fff; color:#000; font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; text-align:center; padding:20px;">
@@ -468,30 +610,29 @@ Make sure notebook is trusted (File → Trust Notebook) or in Quarto, ensure `ex
 </div>
 </div>
 </section>
-<section id="comparing-distributions-relative-entropy-redundancy" class="level2" data-number="4.2">
+<section id="comparing-distributions-relative-entropy-redundancy" class="level2 page-columns page-full" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="comparing-distributions-relative-entropy-redundancy"><span class="header-section-number">4.2</span> Comparing Distributions: Relative Entropy &amp; Redundancy</h2>
-<p>But what if we want to compare distributions? What if we want to somehow measure the entropy of their difference?</p>
-<p>Let’s start with two familiar examples. - We have our language with <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>. - We know their probabilities. - We also know what it would look like if we assumed an uniform distribution for them.</p>
-<p>Let’s now compare these two distributions.</p>
-<div id="8f46e9ca-ce6e-4b48-8760-a71daf2001cf" class="cell" data-execution_count="14">
+<p>Recall from the previous section two versions of our language <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span>. In the first instance, the language was uniform, all symbols were equally likely. This was also the “maximum entropy distribution”. In the second instance, we defined specific and varying probabilities for each symbol. Let’s now compare these two distributions which are, in fact, examples taken straight out of Shannon’s foundational paper.</p>
+<p>We start by defining the symbols and the two probability distributions for them. Then, using an imported helper function, we plot their probabilities, side-by-side.</p>
+<div id="8f46e9ca-ce6e-4b48-8760-a71daf2001cf" class="cell" data-execution_count="58">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>uniform_probs <span class="op">=</span> [<span class="fl">0.25</span>]<span class="op">*</span><span class="dv">4</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lang_probs <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>language <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>uniform_probs <span class="op">=</span> [<span class="fl">0.25</span>]<span class="op">*</span><span class="dv">4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lang_probs <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6946abd6-9a27-483f-9845-73b90ac81a3a" class="cell" data-execution_count="16">
+<div id="6946abd6-9a27-483f-9845-73b90ac81a3a" class="cell">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                              uniform_probs,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Uniform'</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to a uniform distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                              uniform_probs,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Uniform'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to a uniform distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -501,95 +642,122 @@ Make sure notebook is trusted (File → Trust Notebook) or in Quarto, ensure `ex
 </div>
 </div>
 </div>
-<p>One way we could compare them, is to just take their ratio. We will call this ratio <strong>“relative entropy”</strong>:</p>
-<p><span class="math display">\[
-\text{Relative entropy} = \frac{\text{Entropy of a distribution}}{\text{The max entropy of the same distribution}}
-\]</span></p>
-<p><strong>PROMPT:</strong> Can you write that in Python for our example above? Wrap it in a function like this: <code>def relative_entropy(true_ent, max_ent)</code>.</p>
-<p>Recall the entropies of these two distributions:</p>
-<div id="a88b0789-14ee-4d75-93d2-42d0ce2266b4" class="cell" data-execution_count="17">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_np(p):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(<span class="bu">list</span>(p))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="7775ecd0-5fc2-46e7-9582-547acaac5225" class="cell" data-execution_count="18">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>uniform_entropy <span class="op">=</span> entropy_np(uniform_probs)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>uniform_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>2.0</code></pre>
-</div>
-</div>
-<div id="db550ee8-47f6-44fe-af8e-6fa1c753269a" class="cell" data-execution_count="19">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lang_entropy <span class="op">=</span> entropy_np(lang_probs)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lang_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>1.75</code></pre>
-</div>
-</div>
-<div id="d671cbba-3e90-426f-9bbd-ea8925263852" class="cell" data-execution_count="20">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relative_entropy(true_ent, max_ent):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> true_ent <span class="op">/</span> max_ent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="f56f9b83-44fc-4a49-a651-13a986ba3151" class="cell" data-execution_count="21">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>0.875</code></pre>
-</div>
-</div>
+<p>How could we, first of all, quantify the difference here? One way would be to simply take their ratio. Following Shannon, we will call this ratio between the entropy of a source and a max entropy representation of it <strong>“relative entropy”</strong>:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>Shannon introduces this concept in his work to describe the difference between the entropy of our source and a completely uniform version of the same source. In Shannon’s (p.&nbsp;56) own words:</p>
 <blockquote class="blockquote">
 <p>The ratio of the entropy of a source to the maximum value it could have while still restricted to the same symbols will be called its <em>relative entropy</em>.</p>
 </blockquote>
-<p>What does relative entropy capture then? Weaver gets into this question in his intro to Shannon’s work:</p>
-<blockquote class="blockquote">
-<p>If the relative entropy of a certain source is, say .8, this roughly means that this source is, in its choice of symbols to form a message, about 80 per cent as free as it could possibly be with these same symbols.</p>
-</blockquote>
-<p>Shannon himself did a bunch of experiments to conclude that the redundancy of written English is about 50%. In his opinion:</p>
-<blockquote class="blockquote">
-<p>This means that when we write English half of what we write is determined by the structure of the language and half is chosen freely.</p>
-</blockquote>
-<p>One way to better understand what relative entropy captures, is by looking at it’s relationship to <strong>redundancy</strong>. Shannon defined <strong>redundancy</strong> in terms of relative entropy as:</p>
-<p><span class="math display">\[
-\text{Redundancy }= 1-\text{ Relative Entropy}
+<p>Shannon, C. E. (1948). <em>A Mathematical Theory of Communication. The Bell System Technical Journal</em>, 27(3), 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">[URL]</a></p>
+</div></div><p><span class="math display">\[
+\text{Relative entropy} = \frac{\text{Entropy of a distribution}}{\text{The max entropy of the same distribution}}
 \]</span></p>
-<p>Relative entropy tells us how much freedom we have and redundancy tells us how much we lack. The uniform distribution is total freedom: Everything is equally possible! Once we add structure, our choices become more constrained. According to Shannon, redundancy</p>
-<blockquote class="blockquote">
-<p>is the fraction of the structure of the message which is determined not by the free choice of the sender, but rather by the accepted statistical rules governing the use of the symbols in question.</p>
-</blockquote>
-<p>There are some interesting philosophical implications here: Our use of language is just the actualization of the virtual space of possible outcomes, governed by statistical rules. A decisively posthuman vision of communication!</p>
-<p><strong>PROMPT:</strong> What is the redundancy of our artificial language?</p>
-<p>If we go back to our actual data, we can see that our language has 0.875 relative entropy and 0.125 redundancy.</p>
-<div id="79513a62-d467-40a3-812b-ca34de33fc91" class="cell" data-execution_count="22">
+<p><strong>PROMPT:</strong> Can you write that in Python for our example above? Wrap it in a function like this: <code>def relative_entropy(true_ent, max_ent)</code>.</p>
+<p><strong>Hint:</strong> Recall the entropies of these two distributions:</p>
+<div id="a88b0789-14ee-4d75-93d2-42d0ce2266b4" class="cell" data-execution_count="17">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy_np(p):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.array(<span class="bu">list</span>(p))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p[p <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="22">
+</div>
+<div id="7775ecd0-5fc2-46e7-9582-547acaac5225" class="cell" data-execution_count="60">
+<details class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>uniform_entropy <span class="op">=</span> entropy_np(uniform_probs)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>uniform_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>2.0</code></pre>
+</div>
+</div>
+<div id="db550ee8-47f6-44fe-af8e-6fa1c753269a" class="cell" data-execution_count="61">
+<details class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lang_entropy <span class="op">=</span> entropy_np(lang_probs)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lang_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>1.75</code></pre>
+</div>
+</div>
+<div id="d671cbba-3e90-426f-9bbd-ea8925263852" class="cell" data-execution_count="62">
+<details class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relative_entropy(true_ent, max_ent):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> true_ent <span class="op">/</span> max_ent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="f56f9b83-44fc-4a49-a651-13a986ba3151" class="cell" data-execution_count="63">
+<details class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="63">
 <pre><code>0.875</code></pre>
 </div>
 </div>
-<div id="01f049f7-573c-4711-a198-1db436006118" class="cell" data-execution_count="23">
+<p>What does relative entropy capture then? Weaver gets into this question in his intro to Shannon’s work:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Shannon, C. E., &amp; Weaver, W. (1963). <em>The Mathematical Theory of Communication</em> (1st paperback). University of Illinois Press.</p>
+</div></div><blockquote class="blockquote">
+<p>If the relative entropy of a certain source is, say .8, this roughly means that this source is, in its choice of symbols to form a message, about 80 per cent as free as it could possibly be with these same symbols.</p>
+</blockquote>
+<p>Shannon himself did a bunch of experiments to conclude that the redundancy of written English is about 50%. In his opinion:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Shannon, C. E. (1948).<a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">[URL]</a></p>
+</div></div><blockquote class="blockquote">
+<p>This means that when we write English half of what we write is determined by the structure of the language and half is chosen freely.</p>
+</blockquote>
+<p>One way to better understand what relative entropy captures, is by looking at it’s relationship to <strong>redundancy</strong>. Shannon defined <strong>redundancy</strong> in terms of relative entropy as:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>The redundancy […] measures the amount of constraint imposed on a text in the language due to its statistical structure, e.g., in English the high frequency of the letter E, the strong tendency of H to follow T or of U to follow Q.</p>
+</blockquote>
+<p>Shannon, C. E. (1951). Prediction and Entropy of Printed English. <a href="https://doi.org/10.1002/j.1538-7305.1951.tb01366.x">[URL]</a></p>
+</div></div><p><span class="math display">\[
+\text{Redundancy }= 1-\text{ Relative Entropy}
+\]</span></p>
+<p>Relative entropy tells us how much freedom we have and redundancy tells us how much we lack. The uniform distribution is total freedom: Everything is equally possible! Once we add structure, our choices become more constrained. According to Shannon, redundancy</p>
+<p>From the vocabulary of information theory, the concept of “redundancy” was one that evoked particularly strong responses from social scientist. It figures prominently in the work of French structuralist authors as Roman Jakobson, Jacques Lacan, and Claude Lévi-Strauss, as well as American linguists like Zellig Harris. In general, these authors identified redundancy with the concept of “meaning”, presaging in the process the distributionist hypothesis that would later come to legitimate the attribution of semantic capacities to AI models.</p>
+<p>In a critical note, Gregory Bateson wrote:</p>
+<blockquote class="blockquote">
+<p>By confining their attention to the internal structure of the message material, the engineers believe that they can avoid the complexities and difficulties introduced into communication theory by the concept of “meaning.” I would argue, however, that the concept “redundancy” is at least a partial synonym of “meaning.”</p>
+</blockquote>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Bateson, G. (2000). “Redundancy and Coding” in <em>Steps to an Ecology of Mind</em>. University of Chicago Press.</p>
+</div></div><p>There are some interesting philosophical implications here: Our use of language is just the actualization of the virtual space of possible outcomes, governed by statistical rules. A decisively posthuman and post-organic vision of communication, as Bernard Geoghegan has pointed out.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>Shannon’s theory may be described as “posthuman” (in the sense N. Katherine Hayles has used that term), insofar as it dispensed with the centrality of humans in the communications process. However, it was also post-organic—it overturned the centrality living organisms played in most accounts of communications (including Wiener’s), preferring to view communications as a kind of automatism inscribed in the broadest range of statistically based phenomena.</p>
+</blockquote>
+<p>Geoghegan, B. D. (2019). Architectures of information—A comparison of Wiener’s and Shannon’s theories of information. In T. Vardouli &amp; O. Touloumi (Eds.), <em>Computer Architectures: Constructing the Common Ground</em>. Routledge.</p>
+</div></div><p><strong>PROMPT:</strong> What is the redundancy of our artificial language?</p>
+<p>First, we calculate the relative entropy.</p>
+<div id="79513a62-d467-40a3-812b-ca34de33fc91" class="cell" data-execution_count="64">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">-</span>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>0.875</code></pre>
+</div>
+</div>
+<p>Then, to calculate the reduncancy we just subtract the relative entropy from one:</p>
+<div id="01f049f7-573c-4711-a198-1db436006118" class="cell" data-execution_count="65">
+<details open="" class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">-</span>relative_entropy(lang_entropy, uniform_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>0.125</code></pre>
 </div>
 </div>
@@ -606,8 +774,8 @@ p(D) &amp;= 0.125
 <div id="75b3ba90-4ecc-4eb2-9ae3-3a748fe33e55" class="cell" data-execution_count="24">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>assumed_probs <span class="op">=</span> [<span class="fl">0.625</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(assumed_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>assumed_probs <span class="op">=</span> [<span class="fl">0.625</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>, <span class="fl">0.125</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(assumed_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>1.0</code></pre>
@@ -617,14 +785,14 @@ p(D) &amp;= 0.125
 <div id="b7b9cb76-96b0-4b60-a4e3-115a55f24713" class="cell" data-execution_count="25">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                              assumed_probs,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Assumed'</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to our assumed distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                              assumed_probs,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Assumed'</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to our assumed distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -635,29 +803,33 @@ p(D) &amp;= 0.125
 </div>
 </div>
 <p>The entropy for our estimate is:</p>
-<div id="e42de42f-c0c5-4e0f-82fd-339c7e67be9c" class="cell" data-execution_count="26">
+<div id="e42de42f-c0c5-4e0f-82fd-339c7e67be9c" class="cell" data-execution_count="66">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>assumed_entropy <span class="op">=</span> entropy_np(assumed_probs)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>assumed_entropy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>assumed_entropy <span class="op">=</span> entropy_np(assumed_probs)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>assumed_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="26">
-<pre><code>np.float64(1.5487949406953985)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>1.5487949406953985</code></pre>
 </div>
 </div>
 <p>And compared to you actual entropy, we see that our assumed language is actually more structured. The high probability given to <span class="math inline">\(A\)</span> makes it more deterministic:</p>
-<div id="a08e16ff-a4cc-4c07-93b2-faa0c4ed0a35" class="cell" data-execution_count="27">
+<div id="a08e16ff-a4cc-4c07-93b2-faa0c4ed0a35" class="cell" data-execution_count="67">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, assumed_entropy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, assumed_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>np.float64(1.1299107157557358)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<pre><code>1.1299107157557358</code></pre>
 </div>
 </div>
-<p>Let’s stop for a moment to recall what we set out to do: We wanted to find a metric to measure the difference between different probability distributions. And now we’ve done?!</p>
+<p>Let’s stop for a moment to recall what we set out to do: We wanted to find a metric to measure the difference between different probability distributions. Have we accomplished this goal?</p>
 <p>Well yes, kind of. But there’s a problem.</p>
-<p><strong>PROMPT:</strong> What might isse be with using relative entropy to compare distributions?</p>
+<details>
+<summary>
+<strong>PROMPT:</strong> What might isse be with using relative entropy to compare distributions?
+</summary>
+<p><br></p>
 <p>Well, the problem is that relative entropy doesn’t account for the individual probabilities of our outcomes. What kind of issues might this create? Let’s clarify with an example.</p>
 <p>Imagine our language from above, but with inverse probabilities. So:</p>
 <p><span class="math display">\[
@@ -668,12 +840,13 @@ p(C) &amp;= 0.25  \\
 p(D) &amp;= 0.5
 \end{aligned}
 \]</span></p>
+</details>
 <div id="e6fd2611-8e06-45dc-ba66-49dffd3f36fa" class="cell" data-execution_count="28">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>inverse_probs <span class="op">=</span> lang_probs.copy()</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>inverse_probs.reverse()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>inverse_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>inverse_probs <span class="op">=</span> lang_probs.copy()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>inverse_probs.reverse()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>inverse_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>[0.125, 0.125, 0.25, 0.5]</code></pre>
@@ -683,14 +856,14 @@ p(D) &amp;= 0.5
 <div id="cd9f9ca6-82ae-441b-a73d-5fc903dd23e1" class="cell" data-execution_count="29">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                              inverse_probs,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Inverse'</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to a inverse distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>compare_distributions_in_plot(language, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                              lang_probs, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                              inverse_probs,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Actual'</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Inverse'</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Outcomes'</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Probability'</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'Comparing the actual distribution of our language to a inverse distribution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -701,76 +874,82 @@ p(D) &amp;= 0.5
 </div>
 </div>
 <p><strong>PROMPT:</strong> What is the relative entropy between these two distributions?</p>
-<div id="9fc69a94-adc0-4f43-a8a6-80b6c5553c46" class="cell" data-execution_count="30">
+<div id="9fc69a94-adc0-4f43-a8a6-80b6c5553c46" class="cell" data-execution_count="68">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>reversed_entropy <span class="op">=</span> entropy_np(inverse_probs)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>reversed_entropy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>reversed_entropy <span class="op">=</span> entropy_np(inverse_probs)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>reversed_entropy.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="30">
-<pre><code>np.float64(1.75)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>1.75</code></pre>
 </div>
 </div>
-<div id="97857e4f-cc0e-4022-a2cd-482a204dce06" class="cell" data-execution_count="31">
+<div id="97857e4f-cc0e-4022-a2cd-482a204dce06" class="cell" data-execution_count="69">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, reversed_entropy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, reversed_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="31">
-<pre><code>np.float64(1.0)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>1.0</code></pre>
 </div>
 </div>
-<div id="2c8d782b-0cc4-467d-9d4c-6b67c3089509" class="cell" data-execution_count="32">
+<div id="2c8d782b-0cc4-467d-9d4c-6b67c3089509" class="cell" data-execution_count="70">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, lang_entropy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>relative_entropy(lang_entropy, lang_entropy).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="32">
-<pre><code>np.float64(1.0)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<pre><code>1.0</code></pre>
 </div>
 </div>
 <p>Relative entropy says nothing about the actual shape of the distribution, it just tells what it’s mean is. We will need sharper tools to actually compare distributions. But we will still use entropy!</p>
 </section>
-<section id="comparing-distributions-the-kullback-leibler-divergence" class="level2" data-number="4.3">
+<section id="comparing-distributions-the-kullback-leibler-divergence" class="level2 page-columns page-full" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="comparing-distributions-the-kullback-leibler-divergence"><span class="header-section-number">4.3</span> Comparing Distributions: The Kullback-Leibler Divergence</h2>
 <p>Today, no one uses relative entropy or redundancy in machine learning, at least not in the sense that they were defined by Shannon. Instead, people use metrics that were further developed from the idea of relative entropy by other people who built on Shannon’s work.</p>
-<p>One particularly important measure like this is the Kullback-Leibler Divergence or <span class="math inline">\(\mathbb{KL}\)</span>. - It was developed by mathemtaicians Solomon Kullback and Richard Leibler in a 1951 paper. - While they didn’t name it after themselves, other people since then have started using this name. - It’s from the <span class="math inline">\(\mathbb{KL}\)</span> divergence that cross-entrop, the perhaps most commonly used tool for comparing distributions in ML, is derived.</p>
-<p>Let’s start with intuition again.</p>
-<p>What if for every outcome <span class="math inline">\(x_i\)</span> in our distribution, we compared the number of bits we need to encode that outcome?</p>
+<p>One particularly important measure like this is the Kullback-Leibler Divergence or <span class="math inline">\(\mathbb{KL}\)</span>, that was developed by mathemtaicians Solomon Kullback and Richard Leibler in a 1951 paper. While they didn’t name it after themselves, other people since then have started using this name. It is also from the <span class="math inline">\(\mathbb{KL}\)</span> divergence that cross-entropy, the perhaps most commonly used tool for comparing distributions in machine learning, is derived.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<blockquote class="blockquote">
+<p>This note generalizes to the abstract case Shannon’s definition of information.</p>
+</blockquote>
+<p>Kullback, S., &amp; Leibler, R. A. (1951). On Information and Sufficiency. <em>The Annals of Mathematical Statistics</em>, 22(1), 79–86. <a href="https://doi.org/10.1214/aoms/1177729694">[URL]</a></p>
+</div></div><p>Let’s start with intuition again.</p>
+<p>What if for every outcome <span class="math inline">\(x_i\)</span> for our random variable <span class="math inline">\(X\)</span>, we compared the number of bits we need to encode that outcome?</p>
 <p><strong>PROMPT:</strong> Can you code such a for-loop in Python?</p>
-<div id="10f6876d-8e58-43ea-9957-3a38aba67639" class="cell" data-execution_count="33">
-<details open="" class="code-fold">
+<div id="10f6876d-8e58-43ea-9957-3a38aba67639" class="cell" data-execution_count="71">
+<details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>entropy_diff <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> lang_probs:</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    entropy_diff <span class="op">+=</span> (np.log2(p) <span class="op">-</span> np.log2(<span class="fl">0.25</span>))</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>entropy_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>entropy_diff <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> lang_probs:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    entropy_diff <span class="op">+=</span> (np.log2(p) <span class="op">-</span> np.log2(<span class="fl">0.25</span>))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>entropy_diff.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>np.float64(-1.0)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>-1.0</code></pre>
 </div>
 </div>
 <p>What? We actually need in total one bit more to encode our structured language than we need for the uniform distribution. And indeed, this is true, we see it from our bit tables:</p>
 <div id="88d3ae1c-7b19-4b94-891c-f23ceffe7725" class="cell" data-execution_count="34">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_bit_table(outcome, bits, probs):</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    n_bits <span class="op">=</span> [<span class="bu">len</span>(b) <span class="cf">for</span> b <span class="kw">in</span> bits]</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'outcomes'</span>:outcome, </span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">'bits'</span>:bits, </span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'n_bits'</span>:n_bits,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'prob'</span>:np.<span class="bu">round</span>(probs, <span class="dv">3</span>).astype(<span class="bu">str</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>        }).style.hide()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_bit_table(outcome, bits, probs):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    n_bits <span class="op">=</span> [<span class="bu">len</span>(b) <span class="cf">for</span> b <span class="kw">in</span> bits]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'outcomes'</span>:outcome, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">'bits'</span>:bits, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'n_bits'</span>:n_bits,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'prob'</span>:np.<span class="bu">round</span>(probs, <span class="dv">3</span>).astype(<span class="bu">str</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        }).style.hide()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="76e4205d-7aac-4b66-bcb5-0f043092880c" class="cell" data-execution_count="35">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lang_bits <span class="op">=</span> [<span class="st">'0'</span>, <span class="st">'10'</span>, <span class="st">'110'</span>, <span class="st">'111'</span>]</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, lang_bits, lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>lang_bits <span class="op">=</span> [<span class="st">'0'</span>, <span class="st">'10'</span>, <span class="st">'110'</span>, <span class="st">'111'</span>]</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, lang_bits, lang_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <style type="text/css">
@@ -817,8 +996,8 @@ p(D) &amp;= 0.5
 <div id="94c79ceb-cfae-47ca-aad1-20ac3584ee35" class="cell" data-execution_count="36">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>uniform_bits <span class="op">=</span> [<span class="st">'00'</span>, <span class="st">'01'</span>, <span class="st">'10'</span>, <span class="st">'11'</span>]</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>uniform_bits <span class="op">=</span> [<span class="st">'00'</span>, <span class="st">'01'</span>, <span class="st">'10'</span>, <span class="st">'11'</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <style type="text/css">
@@ -865,7 +1044,7 @@ p(D) &amp;= 0.5
 <div id="aee55984-9d2a-4e31-adc4-d1e077cdfeb9" class="cell" data-execution_count="37">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>print_bit_table(language, uniform_bits, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <style type="text/css">
@@ -913,14 +1092,14 @@ p(D) &amp;= 0.5
 <div id="135354ba-39e9-4800-b53e-871ee412f521" class="cell" data-execution_count="38">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>n_lang_bits <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>n_lang_bits <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="a4b7db1e-81ca-4a74-be52-bc402d521920" class="cell" data-execution_count="39">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(n_lang_bits))</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(n_lang_bits))</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>9
@@ -928,162 +1107,166 @@ p(D) &amp;= 0.5
 </div>
 </div>
 <p>But entropy isn’t about sums, it’s about <strong>weighted sums</strong>, also known as <strong>“expected value”</strong> or, simply, <strong>“mean”</strong>.</p>
-<p>So if we rewrite our loop, but now weigh every difference. What should we weigh it by? - Well, how about the probabilities of the actual distribution we are interested in? - Weighing the loop with the probabilities of our language, we get:</p>
-<div id="8fe4c24b-ff03-4f14-8b69-a8032d1dc369" class="cell" data-execution_count="40">
+<p>So if we rewrite our loop, but now weigh every difference. What should we weigh it by? Well, how about using the probabilities of the actual distribution we are interested in? Weighing the loop with the probabilities of our language, we get:</p>
+<div id="8fe4c24b-ff03-4f14-8b69-a8032d1dc369" class="cell" data-execution_count="72">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>entropy_diff <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> lang_probs:</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    entropy_diff <span class="op">+=</span> p<span class="op">*</span>(np.log2(p) <span class="op">-</span> np.log2(<span class="fl">0.25</span>))</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>entropy_diff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>entropy_diff <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> lang_probs:</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    entropy_diff <span class="op">+=</span> p<span class="op">*</span>(np.log2(p) <span class="op">-</span> np.log2(<span class="fl">0.25</span>))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>entropy_diff.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<pre><code>np.float64(0.25)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>0.25</code></pre>
 </div>
 </div>
 <p>What we now get is the distance of the uniform distribution from the vantage point of our the probabilities of our artificial language. And this is the <span class="math inline">\(\mathbb{KL}\)</span> divergence! That’s all there is to it. Let’s write it in numpy and try it out.</p>
 <p><strong>PROMPT:</strong> Write the <span class="math inline">\(\mathbb{KL}\)</span> divergence in <code>numpy</code>.</p>
 <p><strong>Hint:</strong> Here you have it as a loop:</p>
-<div id="47431984-9f0e-4d2d-a3ef-67dadad9102e" class="cell" data-execution_count="41">
+<div id="47431984-9f0e-4d2d-a3ef-67dadad9102e" class="cell" data-execution_count="75">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kl_divergence_loop(p, q):</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    kld <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, p <span class="kw">in</span> <span class="bu">enumerate</span>(lang_probs):</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        kld <span class="op">+=</span> p<span class="op">*</span>(np.log2(p) <span class="op">-</span> np.log2(q[idx]))</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kld</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kl_divergence_loop(p, q):</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    kld <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, p <span class="kw">in</span> <span class="bu">enumerate</span>(lang_probs):</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        kld <span class="op">+=</span> p<span class="op">*</span>(np.log2(p) <span class="op">-</span> np.log2(q[idx]))</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kld</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="47a574cc-4951-4bf3-88e5-3d4f435241a3" class="cell" data-execution_count="42">
-<details open="" class="code-fold">
+<div id="47a574cc-4951-4bf3-88e5-3d4f435241a3" class="cell" data-execution_count="76">
+<details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kl_divergence(p, q):</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p <span class="op">/</span> q), <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kl_divergence(p, q):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(p <span class="op">/</span> q), <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Nice! Let’s try it out:</p>
 <p>Our uniform distribution is on average 0.25 bits away from our actual distribution.</p>
-<div id="78b1edd9-4ba9-40e0-9c5c-778abdb5a30c" class="cell" data-execution_count="43">
+<div id="78b1edd9-4ba9-40e0-9c5c-778abdb5a30c" class="cell" data-execution_count="78">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(uniform_probs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(uniform_probs)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="43">
-<pre><code>np.float64(0.25)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>0.25</code></pre>
 </div>
 </div>
 <p>Why is this true? Because, as we saw above, their total distance is <span class="math inline">\(1\)</span>, so with four outcomes the average distance is <span class="math inline">\(\frac{1}{4} = 0.25\)</span>.</p>
 <p>Our estimate for the language is already a lot closer:</p>
-<div id="1dee044d-47d0-430a-98a0-b60f69fa528a" class="cell" data-execution_count="44">
+<div id="1dee044d-47d0-430a-98a0-b60f69fa528a" class="cell" data-execution_count="79">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(assumed_probs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(assumed_probs)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="44">
-<pre><code>np.float64(0.08903595255631885)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<pre><code>0.08903595255631885</code></pre>
 </div>
 </div>
 <p>Then, if we compare our language to itself, the distance is <span class="math inline">\(0\)</span>:</p>
-<p>This means that we know exactly what distribution <span class="math inline">\(P\)</span> generated the data and the difference in bits needed to encode the distributions is zero. In other words,</p>
+<p>This means that we know exactly what distribution <span class="math inline">\(P\)</span> generated the data and the difference in bits needed to encode the distributions is zero. In other words, as Kevin Murphy has written,</p>
 <blockquote class="blockquote">
-<p>it means that we can correctly predict the probabilities of all possible future events, and thus we have learned to predict the future as well as an ’oracle’ that has access to the true distribution P (Murphy 2021, 243).</p>
+<p>it means that we can correctly predict the probabilities of all possible future events, and thus we have learned to predict the future as well as an ’oracle’ that has access to the true distribution P (p.&nbsp;243).</p>
 </blockquote>
-<p>Finally, how does the <span class="math inline">\(\mathbb{KL}\)</span> divergence do on our inverse distribution?</p>
-<div id="73cf8e4a-9daf-44a4-a605-23bf3e138943" class="cell" data-execution_count="45">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Murphy, K. P. (2021). <em>Probabilistic Machine Learning: An Introduction.</em> MIT Press. <a href="probml.ai">[probml.ai]</a></p>
+</div></div><p>Finally, how does the <span class="math inline">\(\mathbb{KL}\)</span> divergence do on our inverse distribution?</p>
+<div id="73cf8e4a-9daf-44a4-a605-23bf3e138943" class="cell" data-execution_count="80">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(inverse_probs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>kl_divergence(np.array(lang_probs), np.array(inverse_probs)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="45">
-<pre><code>np.float64(0.875)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>0.875</code></pre>
 </div>
 </div>
 <p>Quite well, it turns out! Whereas relative entropy was unable to distinguish them, <span class="math inline">\(\mathbb{KL}\)</span> divergence shows that they are further away from each other than any other distributions we compared.</p>
+<p>If we wanted to formally derive <span class="math inline">\(\mathbb{KL}\)</span> divergence from the definition of entropy, we could do something like this:</p>
 <span class="math display">\[\begin{aligned}
 \mathbb{KL}(p \Vert q)
-    &amp;= \overbrace{E\big[\log_2 p(x_i) - \log_2 q(x_i)\big]}^{\color{red}{\text{Expected surprise of p when encoding with q}}} \\
+    &amp;= \overbrace{E\big[\log_2 p(x_i) - \log_2 q(x_i)\big]}^{{\text{Expected surprise of p when encoding with q}}} \\
     &amp;= \sum_i p(x_i) \big[\log_2 p(x_i) - \log_2 q(x_i)\big] \\
     &amp;= \sum_i p(x_i) \log_2 \frac{p(x_i)}{q(x_i)} \\
     &amp;= \sum_i p(x_i)\log_2 p(x_i) - \sum_i p(x_i)\log_2 q(x_i) \\
     &amp;= \underbrace{-\mathbb{H}(p)}_{\text{Negentropy of p}} + \underbrace{\mathbb{H}(p,q)}_{\text{Cross-entropy between p and q}}
 \end{aligned}\]</span>
-<p>Looks hard? Well, sure. But mostly because we aren’t familiar with the notation and the associated rules of different symbols. Building up the intuition slowly and in code, it’s hopefully more clear :)</p>
+<p>Looks hard? Well, sure. But mostly because we aren’t familiar with the notation and the associated rules of different symbols. Building up the intuition slowly and in code, it’s hopefully more clear!</p>
 <p>Now we can move on to our last part: <strong>cross-entropy</strong>. This function is the last terms of the <span class="math inline">\(\mathbb{KL}\)</span> divergence above and probably the most commonly used optimization function in neural networks today.</p>
 </section>
-<section id="comparing-distributions-cross-entropy" class="level2" data-number="4.4">
+<section id="comparing-distributions-cross-entropy" class="level2 page-columns page-full" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="comparing-distributions-cross-entropy"><span class="header-section-number">4.4</span> Comparing Distributions: Cross-Entropy</h2>
-<p>With cross-entropy, we take a step back and go to the original definition of entropy. - What if we encoded our artificial language with bits corresponding to some other language. - For example: What if we used the bits for the uniform distribution to encode the artificial language? - How many bits would we then need on average.</p>
-<p>Let’s say the distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> have the same outcomes <span class="math inline">\(x_i\)</span>, but with different probabilities <span class="math inline">\(p(x_i)\)</span> and <span class="math inline">\(q(x_i)\)</span>. Then, in terms of our equation for information, it would look like this:</p>
+<p>With cross-entropy, we take a step back and go to the original definition of entropy. However, now we ask instead: What if we encoded our artificial language with bits corresponding to some other language. For example, what if we used the bits for the uniform distribution to encode the artificial language? How many bits would we then need on average?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Cross-entropy is generally attributed to British Mathematician Irvin Good. <br> <br> Good, I. J. (1963). Maximum Entropy for Hypothesis Formulation, Especially for Multidimensional Contingency Tables. <em>The Annals of Mathematical Statistics</em>, 34(3), 911–934.<a href="https://www.jstor.org/stable/pdf/2238473.pdf">[URL]</a></p>
+</div></div><p>Let’s say the distributions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> have the same outcomes <span class="math inline">\(x_i\)</span>, but with different probabilities <span class="math inline">\(p(x_i)\)</span> and <span class="math inline">\(q(x_i)\)</span>. Then, in terms of our equation for information, it would look like this:</p>
 <p><span class="math display">\[
 \begin{equation}
   \mathbb{H}(P,Q) = -\overbrace{\sum_{i=1}^N p(x_i)}^\text{Weighted sum for P} \underbrace{\log_2 q(x_i)}_\text{Bits for Q}
 \end{equation}
 \]</span></p>
 <p>We can modify our <span class="math inline">\(\mathbb{KL}\)</span> divergence loop accordingly.</p>
-<strong>PROMPT:</strong> Write cross-entropy with a for-loop or in <code>numpy</code>.
-<div>
-<p><strong>Hint:</strong> You can use both the for-loop and <code>numpy</code>implementations of <span class="math inline">\(\mathbb{KL}\)</span> divergence and the equation above.</p>
-<div id="602922ae-3847-4361-a420-31870a43389f" class="cell" data-execution_count="46">
-<details open="" class="code-fold">
+<p><strong>PROMPT:</strong> Write cross-entropy with a for-loop or in <code>numpy</code>. <strong>Hint:</strong> You can use both the for-loop and <code>numpy</code>implementations of <span class="math inline">\(\mathbb{KL}\)</span> divergence and the equation above.</p>
+<div id="602922ae-3847-4361-a420-31870a43389f" class="cell" data-execution_count="82">
+<details class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loop(p, q):</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    ce <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, p <span class="kw">in</span> <span class="bu">enumerate</span>(lang_probs):</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>        ce <span class="op">+=</span> p<span class="op">*</span>(<span class="op">-</span> np.log2(q[idx]))</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ce</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_loop(p, q):</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    ce <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, p <span class="kw">in</span> <span class="bu">enumerate</span>(lang_probs):</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>        ce <span class="op">+=</span> p<span class="op">*</span>(<span class="op">-</span> np.log2(q[idx]))</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ce.item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="29566a80-40b2-4e0e-bd92-324430611a17" class="cell" data-execution_count="47">
+<div id="29566a80-40b2-4e0e-bd92-324430611a17" class="cell" data-execution_count="83">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_loop(lang_probs, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_loop(lang_probs, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="47">
-<pre><code>np.float64(2.0)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>2.0</code></pre>
 </div>
 </div>
-<div id="e496f7bf-fcb4-4007-8dbd-51c0dbebb6e0" class="cell" data-execution_count="48">
+<div id="e496f7bf-fcb4-4007-8dbd-51c0dbebb6e0" class="cell" data-execution_count="84">
+<details class="code-fold">
+<summary>Code Toggle</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_np(p, q):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(q)).item()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="9b96b0ae-0674-44ef-a42f-aa6612067a20" class="cell" data-execution_count="85">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cross_entropy_np(p, q):</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(p <span class="op">*</span> np.log2(q))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(lang_probs, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div id="9b96b0ae-0674-44ef-a42f-aa6612067a20" class="cell" data-execution_count="49">
-<details open="" class="code-fold">
-<summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(lang_probs, uniform_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>np.float64(2.0)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>2.0</code></pre>
 </div>
 </div>
 <p>What do these numbers tell us? Well, just how many bits we need on average to encode our artificial language if we instead assume it is uniform. For our estimate, it’s already lower:</p>
-<div id="991e7366-2681-4cb9-b61f-2988ee0ece60" class="cell" data-execution_count="50">
+<div id="991e7366-2681-4cb9-b61f-2988ee0ece60" class="cell" data-execution_count="86">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(lang_probs, assumed_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(lang_probs, assumed_probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>np.float64(1.839035952556319)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="86">
+<pre><code>1.839035952556319</code></pre>
 </div>
 </div>
 <p>But the most efficient encoding is achieved using the actual distribution of the langauge itself. And, indeed, the cross-entropy between our language and itself is just the entropy of the language! Like plain old entropy, it tells us how many bits we need on average to code the language with it’s own encoding.</p>
-<div id="40470f61-3970-4417-97b7-b3c199379638" class="cell" data-execution_count="51">
+<div id="40470f61-3970-4417-97b7-b3c199379638" class="cell" data-execution_count="87">
 <details open="" class="code-fold">
 <summary>Code Toggle</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(np.array(lang_probs), np.array(lang_probs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>cross_entropy_np(np.array(lang_probs), np.array(lang_probs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>np.float64(1.75)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="87">
+<pre><code>1.75</code></pre>
 </div>
 </div>
-<p>And that’s it! You now know as much if not a lot more information theory as most people doing machine learning. Most people don’t really understand cross-entropy, they just use it :-S</p>
+<p>And that’s it! You now know as much if not a lot more information theory as most people doing machine learning. In the next section, we will see how cross-entropy is used in language modelling in a manner that reproduces Noisy Channel thinking.</p>
 
 
 
-</div>
 </section>
 
 </main> <!-- /main -->

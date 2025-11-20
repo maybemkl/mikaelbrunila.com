@@ -48,7 +48,7 @@
     "href": "index.html#cite-contribute-donate",
     "title": "From Bits to Embeddings – A Critical Introduction to Information Theory",
     "section": "1.4 Cite, contribute, donate",
-    "text": "1.4 Cite, contribute, donate\nIf you find any factual errors or otherwise want to contribute, feel free to either start and issue or open a pull request on GitHub. If you find this work helpful, please consider donating something through Buy Me A Coffee, Ko-Fi, PayPal, or GitHun Sponsors.\nTo cite this website, please use:\n@online{brunila2025informationtheory,\n  author = {Brunila, Mikael},\n  title = {From Bits to Embeddings – A Critical Introduction to Information Theory},\n  year = {2025},\n  url = {https://mikaelbrunila.com/information-theory},\n  note = {Online tutorial},\n  langid = {en}\n}",
+    "text": "1.4 Cite, contribute, donate\nIf you find any factual errors or otherwise want to contribute, feel free to either start and issue or open a pull request on GitHub. If you find this work helpful, please consider donating something through Buy Me A Coffee, Ko-Fi, PayPal, or GitHub Sponsors.\nTo cite this website, please use:\n@online{brunila2025informationtheory,\n  author = {Brunila, Mikael},\n  title = {From Bits to Embeddings – A Critical Introduction to Information Theory},\n  year = {2025},\n  url = {https://mikaelbrunila.com/information-theory},\n  note = {Online tutorial},\n  langid = {en}\n}",
     "crumbs": [
       "Part I — Introduction",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Why Information Theory?</span>"
